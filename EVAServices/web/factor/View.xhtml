@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFactorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFactorLabel_id}"/>
+                    <h:outputText value="#{factorController.selected.id}" title="#{bundle.ViewFactorTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewFactorLabel_nombre}"/>
+                    <h:outputText value="#{factorController.selected.nombre}" title="#{bundle.ViewFactorTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewFactorLabel_descripcion}"/>
+                    <h:outputText value="#{factorController.selected.descripcion}" title="#{bundle.ViewFactorTitle_descripcion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{factorController.destroyAndView}" value="#{bundle.ViewFactorDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewFactorEditLink}"/>
+                <br />
+                <h:commandLink action="#{factorController.prepareCreate}" value="#{bundle.ViewFactorCreateLink}" />
+                <br />
+                <h:commandLink action="#{factorController.prepareList}" value="#{bundle.ViewFactorShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewFactorIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

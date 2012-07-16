@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFactorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFactorLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{factorController.selected.id}" title="#{bundle.EditFactorTitle_id}" required="true" requiredMessage="#{bundle.EditFactorRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditFactorLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{factorController.selected.nombre}" title="#{bundle.EditFactorTitle_nombre}" required="true" requiredMessage="#{bundle.EditFactorRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditFactorLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{factorController.selected.descripcion}" title="#{bundle.EditFactorTitle_descripcion}" required="true" requiredMessage="#{bundle.EditFactorRequiredMessage_descripcion}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{factorController.update}" value="#{bundle.EditFactorSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditFactorViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{factorController.prepareList}" value="#{bundle.EditFactorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditFactorIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
