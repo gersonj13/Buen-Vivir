@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+     
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Presentacion Formato"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h:outputText value="${presentacionformatoController.iniciar()}"/>
+
+            <h2>&nbsp;</h2>
+            <h3><h:outputText value="Factores adjuntos al formato #{presentacionformatoController.formatosel.nombre}"></h:outputText></h3>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+            <h:form id="fmeditar" prependId="false">
+                <h:outputText value="${presentacionformatoController.iniciar()}"/>
+
+                <h:panelGroup id="pgformulario" >
+
+                    <br />
+                    <p  class="boxy">
+                        &laquo;
+                        <strong style="text-align: left;">
+                            <h:commandLink action="#{presentacionformatoController.prepareFormatos()}" value="Regresar a Lista Formatos" immediate="true"/>
+                        </strong>
+                    </p>
+                    <br />
+
+                    <p:panel id="pnmaestro" header="Agregar Factores al Formato" toggleable="true" closable="false"
+                             toggleSpeed="500" collapsed="true"  >
+                        <h3><h:outputText value="Agregar Factores al Formato"></h:outputText></h3>
+                        <div class="tabla_estandar">
+                            <h:panelGroup id="pgsublista2">
+                                <script type="text/javascript">
+                                    //<![CDATA[
+                                    corregir_tabla();
+                                    //]]>
+                                </script>
+                                <p:dataTable id="tlazy2" var="item" value="#{presentacionformatoController.formatospresentacionesg}" paginator="true" rows="20"
+                                             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                             rowIndexVar="i" emptyMessage="No hay resultados" >
+
+
+
+                                    <p:column  style=" width: 30px; max-width: 30px; min-width: 30px;"   headerText="Factor"
+                                               footerText="Factor" >
+
+                                        <h:outputText value="#{item.idFactor.nombre}" />
+
+                                    </p:column>
+                                    <p:column style="width: 150px; max-width: 150px; min-width:150px; text-align: left;"  headerText="Presentacion"
+                                              footerText="Presentacion" >
+
+                                        <h:outputText value="#{item.descripcionPresentacion}"/>
+
+                                    </p:column>
+
+                                    <p:column  style="text-align:center; width: 10px; max-width: 10px; min-width: 10px; " headerText="Agregar"   footerText="Agregar">
+                                        <p:commandLink update="@form growlmsj pgsublista" action="#{presentacionformatoController.create}">
+                                            <f:setPropertyActionListener value="#{item}"  target="#{presentacionformatoController.seleccionado}" />
+                                            <h:graphicImage  alt="#{bundleP.EliminarTitle}" title="#{bundleP.EliminarTitle}"  value="/faces/resources/images/iconos/check.png"/>
+                                        </p:commandLink>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:panelGroup>
+
+                        </div>
+                        <br />
+                        <br />
+
+                    </p:panel>
+
+                </h:panelGroup> 
+            </h:form>
+            <br/><br/>
+
+            <h:panelGroup id="pglista" >
+                <h:form id="fmlista" prependId="false">
+                    <h:panelGroup id="pgsublista">
+
+                        <br/>
+                        <p class="boxy" align="center">
+                            <strong style="text-align:center;">
+                                <h:outputText value="Puntaje Asignado: "/>
+                                <h:outputText value="#{presentacionformatoController.puntajeasignado}     "/>
+                                <br/>
+                                <h:outputText value="Puntaje Por Asignar: "/>
+                                <h:outputText value="#{presentacionformatoController.formatosel.escala-presentacionformatoController.puntajeasignado}  "/>
+                            <br/>
+                            <p:commandButton value="Actualizar puntajes asignados" actionListener="#{presentacionformatoController.iniciar()}"  update="pglista" />
+                            </strong>
+                        </p>
+
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            corregir_tabla();
+                            //]]>
+                        </script>
+                        <p:dataTable id="tlazy" var="item" value="#{presentacionformatoController.formatospresentacionese}" paginator="true" rows="20"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     rowIndexVar="i" emptyMessage="No hay resultados"  rowEditListener="#{presentacionformatoController.rowEditListener}" >
+
+
+
+                            <p:column  style=" width: 30px; max-width: 30px; min-width: 30px;" styleClass="campo60"  headerText="Factor"
+                                       footerText="Factor" >
+
+
+                                <h:outputText value="#{item.idPresentacionFactor.idFactor.nombre}" />
+
+                            </p:column>
+                            <p:column style="width: 150px; max-width: 150px; min-width:150px; text-align: left;" styleClass="campo60"  headerText="Presentacion"
+                                      footerText="Presentacion" >
+
+                                <h:outputText value="#{item.idPresentacionFactor.descripcionPresentacion}"/>
+
+                            </p:column>
+
+                            <p:column style="width: 10px; max-width: 10px; min-width:10px; text-align: center;" styleClass="campo60"  headerText="Peso Escala"
+                                      footerText="Peso Escala" >
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.pesoFactorEscala}"/>
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:keyboard keypadOnly="true"   value="#{item.pesoFactorEscala}"  layout="custom"  
+                                                    layoutTemplate="123,456-clear,789-back, 0 " style="width:100%"/>  
+                                    </f:facet>  
+                                </p:cellEditor> 
+                            </p:column>
+
+
+                            <p:column  style="text-align:center; width: 10px; max-width: 10px; min-width: 10px; "  headerText="#{bundleP.EditarTitle}"   footerText="#{bundleP.EditarTitle}" >
+                                <p:rowEditor >
+                                    
+                                </p:rowEditor>
+                            </p:column>
+                            <p:column  style="text-align:center; width: 10px; max-width: 10px; min-width: 10px; " headerText="#{bundleP.EliminarTitle}"   footerText="#{bundleP.EliminarTitle}">
+                                <p:commandLink update="elmD" oncomplete="confirmacion.show()">
+                                    <f:setPropertyActionListener value="#{item}"  target="#{presentacionformatoController.current}" />
+                                    <h:graphicImage  alt="#{bundleP.EliminarTitle}" title="#{bundleP.EliminarTitle}"  value="/faces/resources/images/iconos/eliminar16.png"/>
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <h:panelGroup id="elmD">
+                        <p:dialog id="cdconfirmacion" header="#{bundleP.CDCabeceraTitle}" widgetVar="confirmacion" >
+                            <h:outputText value="#{bundleP.CDMsjTitle} El Factor del Formato de Evaluacion?"></h:outputText>
+                            <br/><br/>
+                            <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                                <p:commandButton value="#{bundleP.SiTitle}"  update="growlmsj pgsublista pgformulario"  oncomplete="confirmacion.hide()" actionListener="#{presentacionformatoController.eliminar}"  >
+
+                                </p:commandButton>
+                                <p:commandButton value="#{bundleP.NoTitle}" onclick="confirmacion.hide()" type="button" />
+                            </h:panelGrid>
+                        </p:dialog>
+                    </h:panelGroup>	
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h:form>
+                <p  class="boxy">
+                    &laquo;
+                    <strong style="text-align: left;">
+                        <h:commandLink action="#{agregarEmpleadodBean.prepareEmpleados()}" value="Regresar a Lista Empleados" immediate="true"/>
+                    </strong>
+                </p>    </h:form>
+
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+            <h:panelGroup id="pgformulario">
+                <h:form id="fmver" prependId="false">
+                    <h3><h:outputText value="Datos del Empleado"></h:outputText></h3>
+
+                    <table style="width: 50%" class="tabla_estandar">
+                        <thead>
+                            <th/><th/>
+                        </thead>
+                        <tr>
+                            <td>
+                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                    <h:outputText value="Identificacion"/>
+                                </div>
+                            </td>
+                            <td style="width: 98.5%; min-width: 100px;" >
+                                <div  style="min-width: 120px; float: left;  text-align: left;  margin-left:  8px; width:90.5%;">
+
+                                    <h:inputText value="#{agregarEmpleadodBean.empleado.nroIdentificacion}" styleClass="campo60"  title="Identificacion"/>
+
+                                </div></td>
+                            <td><div class="col_titulo" style="width: 25%; min-width: 150px;" >
+
+                                    <h:outputLabel value="" />
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                    <h:outputText value="Codigo: "/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="colu75">
+                                    <h:inputText value="#{agregarEmpleadodBean.empleado.codigo}" styleClass="campo60"  title="Codigo"/>
+                                </div></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                    <h:outputText value="Nombres:"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="colu75">
+                                    <h:inputText value="#{agregarEmpleadodBean.empleado.nombres}" styleClass="campo60"  title="Nombres"/>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                    <h:outputText value="Apellidos: "/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="colu75">
+                                    <h:inputText value="#{agregarEmpleadodBean.empleado.apellidos}" styleClass="campo60"  title="Apellidos"/>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                    <h:outputText value="Cargo:"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="colu75">
+
+                                    <h:selectOneMenu value="#{agregarEmpleadodBean.empleado.idCargo.nombre}"  styleClass="campo90"  title="Cargo" style="width: 98.5%; min-width: 150px;">
+                                        <f:selectItems value="#{agregarEmpleadodBean.cargos}" var="id" itemLabel="#{id.nombre}" itemValue="#{id.nombre}" />
+
+                                    </h:selectOneMenu>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col_titulo"  >
+                                    <h:outputText value="Correo"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="colu75">
+                                    <h:inputText value="#{agregarEmpleadodBean.empleado.correo}" styleClass="campo60"  title="Correo"/>
+                                </div></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                    <h:outputText value="Fecha Nacimiento"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="colu75">
+                                    <p:calendar id="fechanac" value="#{agregarEmpleadodBean.fechanac}" navigator="true" effect="drop" readOnlyInputText="true" pattern="dd-MM-yyy"   />
+
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                    <h:outputText value="Fecha Ingreso"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="colu75">
+                                    <p:calendar id="fechaing" value="#{agregarEmpleadodBean.fechaing}" navigator="true" effect="drop" readOnlyInputText="true" pattern="dd-MM-yyy"   />
+                                </div></td>
+                        </tr>
+
+                    </table>
+                    <br/><br/>
+
+                    <h:panelGrid id="display3" columns="2" cellpadding="4">
+
+                        <p:commandButton id="Guardar3"   update="@form growlmsj pgsublista"  value="Agregar" action="#{agregarEmpleadodBean.Agregar()}" />
+
+                        <p:commandButton value="Cancelar" action="#{agregarEmpleadodBean.prepareEmpleados()}" />
+                    </h:panelGrid> 
+
+
+                </h:form>
+
+            </h:panelGroup>
+        </ui:define>
+
+
+        <ui:define name="titulo_salida">
+        </ui:define>
+    </ui:composition>
+
+</html>

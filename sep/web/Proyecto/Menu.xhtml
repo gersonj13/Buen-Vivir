@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>  
+        <title>Menu de Usuario</title>  
+
+        <meta  http-equiv="Content-Type" content="text/html" charset="UTF-8"/>  
+
+        <script type="text/javascript" src="../resources/scripts/menu/simpletreemenu.js">  
+        </script>  
+        <script src="./../resources/scripts/jquery-1.7.1.js" type="text/javascript"></script>
+        <script src="./../resources/scripts/jquery.corner.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="../resources/pangea/menu/simpletree.css" />  
+        <script language="JavaScript" type="text/JavaScript">  
+            function MM_reloadPage(init) {  //reloads the window if Nav4 resized  
+                if (init==true) with (navigator) 
+                {    if ( appName=="Netscape" )
+                    { 
+                        if (parseInt(appVersion)==4)
+                        { 
+                            document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage;
+                        }
+                    }
+                }  
+                else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) 
+                    location.reload();  
+            }  
+            MM_reloadPage(true);
+           
+        </script>
+        <script language="JavaScript" type="text/javascript">
+            //<![CDATA[
+            $(document).ready( function(){
+                $(".redondas").corner();
+            });
+            //]]>
+        </script>
+    </head>  
+
+    <body > 
+        <div class="redondas" style="background-color: #dfecf1; ">
+            <br/>
+            <div   align="center" style="background-color: snow;">Menú Principal</div> 
+            <br/> 
+            <div align="center" class="Titulo" style="background-color: #dfecf1">#{sessionScope['NomUsu']} 
+                <br/> 
+                <div align="center">#{sessionScope['Cargo']}</div> 
+            </div>
+            <br/> 
+        </div>
+        <br/>
+        <div id="MenuCerrarSesion2">
+            <div id="MCContenido2" style="background-color: #dfecf1; "><br />
+            </div>
+            <h:form>
+                <h3><h:commandLink target="_parent" value="Finalizar Sesion" action="#{sessionBean.cerrar}" /></h3>
+            </h:form>
+
+        </div>
+
+
+        <div id="Layer1" class="redondas"  style=" alignment-adjust: left;  left:-15px; top:95px; width:240px; height:7px; z-index:1; ">  
+            <br/>  
+            <table width="240px" border="0" align="left" class="redondas" style="background-color: #dfecf1; "  >  
+                <tr align="left" >  
+                    <td align="left" style="width: 10px;" >  
+                        <ul id="treemenu1" class="treeview"  style="font-size: larger;">  
+                            <h:panelGroup rendered="#{sessionBean.supervisor}">
+
+                                <li> Evaluaciones
+                                    <ul>
+                                        <li><a href="../Proyecto/evaluacion/listaEvaluaciones.xhtml" target="ppalFrame"> Ejecutar Evaluacion </a></li>
+
+                                    </ul>
+                                </li>
+                                <li> Consultas
+                                    <ul>
+
+                                        <li><a href="../Proyecto/evaluacion/puntajes.xhtml" target="ppalFrame"> Puntos Acumulados</a></li>
+                                        <h:panelGroup rendered="#{sessionBean.selec}">
+                                            <li><a href="../Proyecto/canje/canjePuntos.xhtml" target="ppalFrame"> Canje Puntos</a></li>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup rendered="#{sessionBean.gerente}">
+                                            <li><a href="../Proyecto/reportes/reporteEvaluacionGerentes.xhtml" target="ppalFrame"> Progreso Evaluaciones</a></li>
+                                            <li><a href="../Proyecto/gerentes/evaluaciong.xhtml" target="ppalFrame">Revision Evaluaciones </a></li>
+
+                                        </h:panelGroup>
+
+                                        <li><a href="../resources/reportes/preguntasf.pdf" target="ppalFrame"> Preguntas Frecuentes </a></li>
+
+                                    </ul>
+
+                                </li>
+                                <h:panelGroup rendered="#{sessionBean.recursosh}">
+
+                                    <li> Administracion
+                                        <ul>
+                                            <li> Organizacion
+                                                <ul>
+                                                    <li><a href="../Proyecto/organizacion/listaDependencias.xhtml" target="ppalFrame">Dependencias </a></li>
+                                                    <li><a href="../Proyecto/gerentes/evaluaciong.xhtml" target="ppalFrame">gerentes </a></li>
+
+                                                    <li><a href="../Proyecto/organizacion/listaCargos.xhtml" target="ppalFrame">Cargos</a></li>
+                                                    <li><a href="../Proyecto/organizacion/empleadosEliminados.xhtml" target="ppalFrame">Reingreso Empleados</a></li>
+
+                                                </ul>
+                                            </li>
+
+                                            <li> Evaluacion
+                                                <ul>
+                                                    <li><a href="../Proyecto/evaluacion/evaluaciones.xhtml" target="ppalFrame">Evaluaciones </a></li>
+                                                    <li><a href="../Proyecto/factores/List.xhtml" target="ppalFrame">Factores </a></li>
+                                                    <li><a href="../Proyecto/formatoEvaluacion/List.xhtml" target="ppalFrame">Formatos Evaluacion </a></li>
+                                                </ul>
+
+                                            </li>
+                                            <li> Reportes
+                                                <ul>
+                                                    <li><a href="../Proyecto/reportes/reporteEvaluacion.xhtml" target="ppalFrame">Evaluacion</a></li>
+                                                    <li><a href="../Proyecto/reportes/reporteEstadistico.xhtml" target="ppalFrame">Estadisticas</a></li>
+
+                                                </ul>
+
+                                            </li>
+                                            <li> Canje
+                                                <ul>
+                                                    <li><a href="../Proyecto/canje/periodoCanje.xhtml" target="ppalFrame">Periodos</a></li>
+                                                    <li><a href="../Proyecto/canje/corteCanje.xhtml" target="ppalFrame">Corte</a></li>
+
+                                                </ul>
+
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                </h:panelGroup>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{!sessionBean.supervisor}">
+
+                                <li> Consultas
+                                    <ul>
+
+                                        <li><a href="../Proyecto/evaluacion/puntajes.xhtml" target="ppalFrame"> Puntos Acumulados </a></li>
+
+                                        <h:panelGroup rendered="#{sessionBean.selec}">
+                                            <li><a href="../Proyecto/canje/canjePuntos.xhtml" target="ppalFrame"> Canje Puntos</a></li>
+                                        </h:panelGroup>
+
+                                        <li><a href="  ../resources/reportes/preguntasf.pdf" target="ppalFrame"> Preguntas Frecuentes </a></li>
+
+                                    </ul>
+
+
+                                </li>
+                                <h:panelGroup rendered="#{sessionBean.recursosh}">
+
+                                    <li> Administracion
+                                        <ul>
+                                            <li> Organizacion
+                                                <ul>
+                                                    <li><a href="../Proyecto/organizacion/listaDependencias.xhtml" target="ppalFrame">Dependencias </a></li>
+                                                    <li><a href="../Proyecto/gerentes/evaluaciong.xhtml" target="ppalFrame">gerentes </a></li>
+
+                                                    <li><a href="../Proyecto/organizacion/listaCargos.xhtml" target="ppalFrame">Cargos</a></li>
+                                                    <li><a href="../Proyecto/organizacion/empleadosEliminados.xhtml" target="ppalFrame">Reingreso Empleados</a></li>
+
+                                                </ul>
+                                            </li>
+
+                                            <li> Evaluacion
+                                                <ul>
+                                                    <li><a href="../Proyecto/evaluacion/evaluaciones.xhtml" target="ppalFrame">Evaluaciones </a></li>
+                                                    <li><a href="../Proyecto/factores/List.xhtml" target="ppalFrame">Factores </a></li>
+                                                    <li><a href="../Proyecto/formatoEvaluacion/List.xhtml" target="ppalFrame">Formatos Evaluacion </a></li>
+                                                </ul>
+
+                                            </li>
+                                            <li> Reportes
+                                                <ul>
+                                                    <li><a href="../Proyecto/reportes/reporteEvaluacion.xhtml" target="ppalFrame">Evaluacion</a></li>
+                                                    <li><a href="../Proyecto/reportes/reporteEstadistico.xhtml" target="ppalFrame">Estadisticas</a></li>
+
+                                                </ul>
+
+                                            </li>
+                                            <li> Canje
+                                                <ul>
+                                                    <li><a href="../Proyecto/canje/periodoCanje.xhtml" target="ppalFrame">Periodos</a></li>
+                                                    <li><a href="../Proyecto/canje/corteCanje.xhtml" target="ppalFrame">Corte</a></li>
+
+                                                </ul>
+
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                </h:panelGroup>
+
+                            </h:panelGroup>
+                        </ul>
+                    </td>
+
+
+                </tr>
+
+            </table> 
+
+        </div> 
+
+        <script type="text/javascript">  
+            ddtreemenu.createTree("treemenu1", true)  
+        </script>  
+
+
+    </body>
+</html>

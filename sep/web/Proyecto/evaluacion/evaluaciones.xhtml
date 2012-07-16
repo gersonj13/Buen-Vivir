@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Lista de Evaluaciones"></h:outputText>
+        </ui:define>iniciar
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+            <h1><h:outputText value="Lista de Evaluaciones"></h:outputText></h1>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+
+            <h:panelGroup id="pgformulario" >
+                <h:outputText value="${evaluacionesController.iniciar()}"/>
+
+                <br />
+                <p:panel id="pnmaestro" header="Crear Evaluacion" toggleable="true" closable="false"
+                         toggleSpeed="500" collapsed="true"  >
+                    <h3><h:outputText value="Crear Evaluacion"></h:outputText></h3>
+                    <h:form id="fmeditar" prependId="false">
+                        <div class="tabla_estandar">
+                            <table style="width: 80%" class="tabla_estandar">
+                                <thead>
+                                    <th/><th/>
+                                </thead>
+
+                                <tr>
+                                    <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                            <h:outputLabel value="Nombre Evaluacion" for="nombre" />
+                                        </div>
+                                    </td>
+                                    <td style="width:250px;"><div>
+                                            <h:inputText id="nombre" value="#{evaluacionesController.selected.nombreEvaluacion}" title="Nombre Evaluacion:" styleClass="campo98" />
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                            <h:outputLabel value="Fecha Inicio" for="fechai" />
+                                        </div>
+                                    </td>
+                                    <td style="width:250px;"><div>
+                                            <p:calendar id="fechai" value="#{evaluacionesController.fechai}" navigator="true" effect="drop" readOnlyInputText="true" pattern="dd-MM-yyyy" />
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                            <h:outputLabel value="Fecha Finalizacion" for="fechaf" />
+                                        </div>
+                                    </td>
+                                    <td style="width:250px;"><div>
+                                            <p:calendar id="fechaf" value="#{evaluacionesController.fechaf}" navigator="true" effect="drop" readOnlyInputText="true" pattern="dd-MM-yyyy"   />
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                            <h:outputLabel value="Formato Evaluacion" for="formato" />
+                                        </div>
+                                    </td>
+                                    <td style="width:350px;"><div>
+                                            <h:panelGroup id="formatoc">
+                                                <h:inputText id="formato" value="#{evaluacionesController.selected.idFormatoEvaluacion.nombre}" title="Formato Evaluacion" style=" padding: 3px; width:  98%;" readonly="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+                                            <p:commandButton type="button" update="elmD2" value="Formatos" onclick="confirmation2.show()" />
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                            <h:outputLabel value="Dependencia" for="dependencia" />
+                                        </div>
+                                    </td>
+                                    <td style="width:350px;"><div>
+                                            <h:panelGroup id="dependenciac">
+                                                <h:inputText id="dependencia" value="#{evaluacionesController.selected.idDependencia.nombre}" title="Dependencia" style=" padding: 3px; width:  98%;" readonly="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+                                            <p:commandButton type="button" update="elmD3" value="Dependencias" onclick="confirmation.show()" />
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="col_titulo" style="width: 50px; min-width: 50px" >
+
+                                            <h:outputLabel value="Peso" for="peso" />
+                                        </div>
+                                    </td>
+                                    <td style="width:50px;"><div>
+                                            <p:keyboard keypadOnly="true"   value="#{evaluacionesController.selected.peso}" style="padding: 3px; width: 30px;"  layout="custom"  
+                                                        id="peso" layoutTemplate="123,456-clear,789-back, 0 " title="Peso"/> 
+
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="col_titulo_sin"></div></td>
+                                    <td><div class="col75">
+                                            <!-- Botones      -->                                            
+                                            <p:commandButton id="Guardar" update="@form growlmsj pgsublista"  value="#{bundleP.GuardarTitle}" actionListener="#{evaluacionesController.create}"  />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br />
+                        <br />
+                        <h:panelGroup id="elmD2">
+
+                            <p:dialog id="elmdialog2"  header="Seleccione El Factor" width="800" widgetVar="confirmation2"  >
+                                <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+                                    <p:commandButton value="Cancelar" type="button" onclick="confirmation2.hide()" />
+
+                                </p>
+
+                                <h:panelGroup id="pglista2">
+
+                                    <h:panelGroup id="pgsublista2">
+                                        <p:dataTable id="tlazy2" var="item" value="#{evaluacionesController.formatos}" paginator="true" rows="20"
+                                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                                     rowIndexVar="i" emptyMessage="No hay resultados"  >
+
+
+
+                                            <p:column  style=" width: 40px; max-width: 40px;" styleClass="campo60"  headerText="Nombre"
+                                                       footerText="Nombre" >
+                                                <h:outputText value="#{item.nombre}" />
+                                            </p:column>
+                                            <p:column style="width: 50px;  max-width: 50px;  min-width: 50px;" styleClass="campo60"  headerText="Descripcion"
+                                                      footerText="Descripcion" >
+                                                <h:outputText value="#{item.descripcion}"/>
+                                            </p:column>
+                                            <p:column style="width: 10px;  max-width: 10px; text-align: center;  min-width: 10px;" styleClass="campo60"  headerText="Escala"
+                                                      footerText="Escala" >
+                                                <h:outputText value="#{item.escala}"/>
+                                            </p:column>
+                                            <p:column  style="text-align:center; width: 10px; max-width: 10px;" headerText="Seleccionar"   footerText="Seleccionar">
+                                                <p:commandLink update="formatoc" oncomplete="confirmation2.hide()">
+                                                    <f:setPropertyActionListener value="#{item}"  target="#{evaluacionesController.selected.idFormatoEvaluacion}" />
+                                                    <h:graphicImage  alt="seleccionar" title="Seleccionar"  value="/faces/resources/images/iconos/check.png"/>
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+
+                                        <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+                                            <p:commandButton value="Cancelar" type="button" onclick="confirmation2.hide()" />
+
+                                        </p>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                            </p:dialog>
+
+                        </h:panelGroup>
+                        <h:panelGroup id="elmD3">
+
+                            <p:dialog id="elmdialog"  header="Seleccione la Dependencia" width="800" widgetVar="confirmation"  >
+                                <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+                                    <p:commandButton value="Cancelar" type="button" onclick="confirmation.hide()" />
+
+                                </p>
+                                <h:outputText value="${evaluacionesController.cargarArbol()}"/>
+
+                                <h:panelGroup id="pglista3">
+
+                                    <h:panelGroup id="pgsublista3">
+                                        <p:treeTable value="#{evaluacionesController.root}" var="dependencia" expanded="true"  style="text-align: left;">  
+                                            <f:facet name="header">  
+                                                Lista de Dependencias
+                                            </f:facet>  
+
+                                            <p:column style="width:70px; text-align: left;" >  
+                                                <f:facet name="header">  
+                                                    Nombre  
+                                                </f:facet>  
+                                                <h:outputText value="#{dependencia.nombre}" /> 
+                                            </p:column> 
+                                            <p:column style="width:150px">  
+                                                <f:facet name="header">  
+                                                    Descripcion  
+                                                </f:facet>  
+                                                <h:outputText value="#{dependencia.descripcion}" />      
+                                            </p:column>
+
+
+                                            <p:column style="width: 20px; text-align: center; "   headerText="Seleccionar"  footerText="Seleccionar" >
+                                                <f:facet name="header">  
+                                                    seleccionar  
+                                                </f:facet> 
+                                                <p:commandLink   update="dependenciac" oncomplete="confirmation.hide()" >
+                                                    <f:setPropertyActionListener  target="#{evaluacionesController.selected.idDependencia}" value="#{dependencia}" />
+                                                    <h:graphicImage  alt="Seleccionar"  value="/faces/resources/images/iconos/check.png"/>
+                                                </p:commandLink>
+                                            </p:column>
+
+                                        </p:treeTable>
+
+                                        <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+                                            <p:commandButton value="Cancelar" type="button" onclick="confirmation.hide()" />
+
+                                        </p>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                            </p:dialog>
+
+                        </h:panelGroup>
+                    </h:form>
+                </p:panel>
+
+            </h:panelGroup>
+            <br/><br/>
+            <h:panelGroup id="pglista">
+                <h:form id="fmlista" prependId="false">
+                    <h:panelGroup id="pgsublista">
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            corregir_tabla();
+                            //]]>
+                        </script>
+                        <p:dataTable id="tlazy" var="item" value="#{evaluacionesController.evaluaciones}" paginator="true" rows="20"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     rowIndexVar="i" emptyMessage="No hay resultados"  rowEditListener="#{evaluacionesController.rowEditListener}" >
+
+
+
+                            <p:column style="width: 20px; text-align: center; " styleClass="campo60"  headerText="#{bundleP.ListEvaluacionesNombre}"
+
+                                      footerText="#{bundleP.ListEvaluacionesNombre}"    >
+
+                                <h:outputText value="#{item.nombreEvaluacion}" style="font-size: 14px;"/>
+                            </p:column>
+
+                            <p:column style="max-width: 15px; width: 15px; text-align: center;  "   headerText="#{bundleP.ListEvaluacionesPeso}"
+                                      footerText="#{bundleP.ListEvaluacionesPeso}" >
+
+
+                                <h:outputText value="#{item.peso}" style="width: 10px;" />
+
+
+                            </p:column>
+
+                            <p:column style="width: 20px;  text-align: center;" styleClass="campo60"  headerText="#{bundleP.ListEvaluacionesFechaI}"    footerText="#{bundleP.ListEvaluacionesFechaI}" >
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.fechaInicio.day}-#{item.fechaInicio.month}-#{item.fechaInicio.year}" style="font-size: 14px;" />
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <h:outputText value="#{evaluacionesController.TransformarFechas1(item.fechaInicio)}" /> 
+                                        <p:calendar id="efechaf" value="#{evaluacionesController.fechaie}" navigator="true" effect="drop" readOnlyInputText="true" pattern="dd-MM-yyyy"   />
+                                    </f:facet>
+                                </p:cellEditor>
+
+                            </p:column>
+                            <p:column style="width: 20px; text-align: center;" styleClass="campo60"  headerText="#{bundleP.ListEvaluacionesFechaF}"
+                                      footerText="#{bundleP.ListEvaluacionesFechaF}" >
+
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.fechaFin.day}-#{item.fechaFin.month}-#{item.fechaFin.year}" style="font-size: 14px;" />
+                                    </f:facet>
+                                    <f:facet name="input"> 
+                                        <h:outputText value="#{evaluacionesController.TransformarFechas2(item.fechaFin)}" /> 
+                                        <p:calendar id="efechai" value="#{evaluacionesController.fechafe}" navigator="true" effect="drop" readOnlyInputText="true" pattern="dd-MM-yyyy"  />
+                                    </f:facet>
+                                </p:cellEditor>
+
+
+                            </p:column>
+                            <p:column style="width: 20px; text-align: center; "   headerText="#{bundleP.ListEvaluacionesDependencia}" footerText="#{bundleP.ListEvaluacionesDependencia}" >
+                                <h:outputText value="#{item.idDependencia.nombre}" style="font-size: 14px;"/>
+                            </p:column>
+                            <p:column   style="text-align:center;  alignment-baseline: central; text-align-last: center;  alignment-adjust: central; width: 1px; min-width: 1px; max-width: 1px;"  headerText="#{bundleP.EditarTitle}"   footerText="#{bundleP.EditarTitle}" >
+                                <p:rowEditor>
+                                </p:rowEditor>  
+
+                            </p:column>
+                            <p:column  style="text-align:center; width: 5px; min-width: 5px;  max-width: 5px;" headerText="#{bundleP.EliminarTitle}"   footerText="#{bundleP.EliminarTitle}">
+                                <p:commandLink update="elmD" oncomplete="confirmacion.show()">
+                                    <f:setPropertyActionListener value="#{item}"  target="#{evaluacionesController.current}" />
+                                    <h:graphicImage  alt="#{bundleP.EliminarTitle}" title="#{bundleP.EliminarTitle}"  value="/faces/resources/images/iconos/eliminar16.png"/>
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <h:panelGroup id="elmD">
+                        <p:dialog id="cdconfirmacion" header="#{bundleP.CDCabeceraTitle}" widgetVar="confirmacion" >
+                            <h:outputText value="#{bundleP.CDMsjTitle} La Evaluacion?"></h:outputText>
+                            <br/>
+                            <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                                <p:commandButton value="#{bundleP.SiTitle}"  update="growlmsj pgsublista"  oncomplete="confirmacion.hide()" actionListener="#{evaluacionesController.eliminar}"  >
+
+                                </p:commandButton>
+                                <p:commandButton value="#{bundleP.NoTitle}" onclick="confirmacion.hide()" type="button" />
+                            </h:panelGrid>
+                        </p:dialog>
+                    </h:panelGroup>	
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

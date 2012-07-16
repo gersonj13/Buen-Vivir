@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <link rel="shortcut icon" href="resources/pangea/favicon.ico"></link>
+        <!-- CSS -->
+        <h:outputStylesheet name="pangea/general/Pangea.css" />
+        <h:outputStylesheet name="pangea/flick/skin.css" />
+
+        <!-- JS -->
+        <h:outputScript name="scripts/main.js" />
+        <h:outputScript name="scripts/shortcut.js" />
+        <h:outputScript name="scripts/Inicializar.js" />
+        <h:outputScript name="scripts/js/highcharts.js"/>
+        <h:outputScript name="scripts/js/modules/exporting.js"/>
+
+        <script type="text/javascript">
+            window.focus();
+        </script>
+        <ui:insert name="importaciones">
+        </ui:insert>
+    </h:head>
+
+    <h:body styleClass="plantillaPrincipal">
+
+        <div id="TipLayer" style="visibility:hidden;position:absolute;z-index:1000;top:-100;"></div>
+        <h:outputScript name="scripts/style.js" />
+        <!-- <c:if test="{(sessionBean.logeado==true)}"> -->
+        <c:if test="#{(true)}">
+            <div id="MenuCerrarSesion">
+                <div id="MCContenido"><br />
+                    <ui:insert name="contenido_menu">Default Title</ui:insert>
+                </div>
+                <h:form>
+                    <h3><h:commandLink target="_parent" value="${bundleP.FinalizarSesionTitle}" action="#{sessionBean.cerrar}" /></h3>
+                </h:form>
+            </div>
+            <div id="cuerpo" >
+
+                <ui:insert name="titulo_entrada">Default Title</ui:insert>
+                <div id="wrapper">
+                    <ui:insert name="Cuerpo">Default Title</ui:insert> 
+                </div>
+
+
+                <div style="clear: both;" ></div>
+                <ui:insert name="titulo_salida"></ui:insert>
+            </div>
+        </c:if>
+        <!-- <c:if test="{(sessionBean.logeado==false)}"> -->
+        <c:if test="#{(sessionBean.logeado==false)}">
+            <h:outputText value="#{sessionBean.off()}"/>
+
+        </c:if>
+
+    </h:body>
+
+</html>

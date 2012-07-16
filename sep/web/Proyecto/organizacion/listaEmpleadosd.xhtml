@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <f:view contentType="text/html">
+        <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+            <ui:define name="title">
+                <h:outputText value="Lista de Empleados"></h:outputText>
+            </ui:define>
+
+            <ui:define name="importaciones">
+                <c:if test="#{true}">
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        //]]>
+                    </script>
+                </c:if>
+            </ui:define>
+
+            <ui:define name="contenido_menu">
+            </ui:define>
+
+            <ui:define name="titulo_entrada">
+                <h2>&nbsp;</h2>
+                <h1><h:outputText value="Dependencia: #{sessionScope['dependenciaSeleccionada'].nombre}"></h:outputText></h1>
+            </ui:define>
+
+            <ui:define name="Cuerpo">
+
+
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+
+
+                <h:panelGroup id="pgformulario" >
+
+                    <br />                
+
+                </h:panelGroup>
+
+                <h:panelGroup id="pglista">
+                    <h:form id="fmlista" prependId="false">
+
+                        <p  class="boxy">
+                            &laquo;
+                            <strong style="text-align: left;">
+                                <h:commandLink action="#{empleadodBean.prepareDependencia()}" value="Regresar a Lista Dependencias" immediate="true"/>
+                            </strong>
+                        </p>
+                        <p  class="boxy">
+                            &laquo;
+                            <strong style="text-align: left;">
+                                <h:commandLink action="#{empleadodBean.prepareAgregarempleadoseleccionado()}" value="Agregar Empleado" immediate="true"/>
+                            </strong>
+                        </p>
+                         <br/>
+                        <p:separator />
+                        <h:panelGrid columns="1" style="alignment-adjust: center;">
+                            <h:panelGrid columns="8">
+                                
+                                <h:outputText value="Nombres" /><h:inputText value="#{empleadodBean.filtron}" />
+                              
+                                <h:outputText value="Apellidos" />  <h:inputText value="#{empleadodBean.filtroa}" />
+                              
+                                <h:outputText value="Cedula" />  <h:inputText value="#{empleadodBean.filtroc}" />
+                                <h:outputText value=""/>
+                                <p:commandButton action="#{empleadodBean.filtrar}" update="pgsublista" value="Filtrar"/>
+                                <h:outputText value=""/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <p:separator />
+
+                        <h:panelGroup id="pgsublista">
+                            <script type="text/javascript">
+                                //<![CDATA[
+                                corregir_tabla();
+                                function clearAllFilters() {
+                                    $('.ui-datatable thead th.ui-column-filter').val('');
+                                }
+                                //]]>
+                            </script>
+
+                            <p:dataTable id="tlazy" var="item" value="#{empleadodBean.empleados}" paginator="true"   rows="50" dynamic="true"
+                                         paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         rowIndexVar="i" emptyMessage="No hay resultados" widgetVar="mit"    >
+
+                                <p:column  style="max-width: 150px; width: 150px; text-align: left;" styleClass="campo60"  headerText="#{bundleP.ListEmpleadosNombre}"
+
+                                           footerText="#{bundleP.ListEmpleadosNombre}"    >
+
+                                    <h:outputText value="#{item.nombres} #{item.apellidos}" style="font-size: 14px;"/>
+                                </p:column>
+
+                                <p:column  style="max-width: 40px; width: 40px; text-align: center;" styleClass="campo60"  headerText="#{bundleP.ListEmpleadosCedula}"
+                                           footerText="#{bundleP.ListEmpleadosCedula}" >
+
+
+
+                                    <h:outputText value="#{item.nroIdentificacion}" style="font-size: 14px;"/>
+
+                                </p:column>
+                                <p:column style="width: 20px; max-width: 100px; text-align: left;" styleClass="campo60"  headerText="#{bundleP.ListEmpleadosCargo}"
+                                          footerText="#{bundleP.ListEmpleadosCargo}" >
+
+                                    <h:outputText value="#{item.idCargo.nombre}" style="font-size: 14px;"/>
+
+                                </p:column>
+
+
+
+                                <p:column style="width: 20px; text-align: center; "   headerText="Ver"  footerText="Ver" >
+                                    <p:commandLink ajax="false" update="pgsublista"  process="@this" action="#{empleadodBean.prepareEmpleadoseleccionado}" >
+                                        <f:setPropertyActionListener  target="#{empleadodBean.eseleccionado}" value="#{item}" />
+                                        <h:graphicImage  alt="Empleados"  value="/faces/resources/images/iconos/buscar1.png"/>
+                                    </p:commandLink>
+                                </p:column>
+                                <p:column style="max-width: 15px; min-width: 15px; width: 15px; text-align: center; "   headerText="Editar"  footerText="Editar" >
+                                    <p:commandLink ajax="false" update="pgsublista"  process="@this" action="#{empleadodBean.prepareEditarempleadoseleccionado}" >
+                                        <f:setPropertyActionListener  target="#{empleadodBean.eseleccionado}" value="#{item}" />
+                                        <h:graphicImage  alt="Empleados"  value="/faces/resources/images/iconos/editar16.gif"/>
+                                    </p:commandLink>
+                                </p:column>
+                                <p:column style="max-width: 15px; min-width: 15px; width: 15px; text-align: center; "   headerText="Eval"  footerText="Eval" >
+                                    <p:commandLink ajax="false" update="pgsublista"  process="@this" action="#{empleadodBean.prepareEliminarEvaluacion}" >
+                                        <f:setPropertyActionListener  target="#{empleadodBean.eseleccionado}" value="#{item}" />
+                                        <h:graphicImage  alt="Empleados"  value="/faces/resources/images/iconos/pie16x16.png"/>
+                                    </p:commandLink>
+                                </p:column>
+                                <p:column style="max-width: 28px; width: 28px; text-align: center; "    headerText="Cambiar Dep."  footerText="Cambiar Dep." >
+                                    <p:commandLink  update="elmD2"  process="@this" action="#{empleadodBean.prepareCambiard}" oncomplete="confirmation2.show()"  >
+                                        <f:setPropertyActionListener  target="#{empleadodBean.eseleccionado}" value="#{item}" />
+                                        <h:graphicImage  alt="Dependencia"  value="/faces/resources/images/iconos/home.png" />
+                                    </p:commandLink>
+                                </p:column>
+                                <p:column style="max-width: 15px; min-width: 15px; width: 15px; text-align: center;  "   headerText="Eliminar"  footerText="Eliminar" >
+                                    <p:commandLink ajax="false" update="pgsublista"  process="@this" action="#{empleadodBean.prepareEliminarempleadoseleccionado}" >
+                                        <f:setPropertyActionListener  target="#{empleadodBean.eseleccionado}" value="#{item}" />
+                                        <h:graphicImage  alt="Empleados"  value="/faces/resources/images/iconos/eliminar16.png"/>
+                                    </p:commandLink>
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGroup>
+
+                        <h:panelGroup id="elmD2">
+
+                            <p:dialog id="elmdialog2"  header="Seleccione la Dependencia en la que se reubicara el empleado" width="800" widgetVar="confirmation2"  >
+                                <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+                                    <p:commandButton value="Cancelar" type="button" onclick="confirmation2.hide()" />
+
+                                </p>
+                                <h:outputText value="${empleadodBean.cargarArbol()}"/>
+
+                                <h:panelGroup id="pglista2">
+
+                                    <h:panelGroup id="pgsublista2">
+                                        <p:treeTable value="#{empleadodBean.root}" var="dependencia" expanded="true"  style="text-align: left;">  
+                                            <f:facet name="header">  
+                                                Lista de Dependencias
+                                            </f:facet>  
+
+                                            <p:column style="width:70px; text-align: left;" >  
+                                                <f:facet name="header">  
+                                                    Nombre  
+                                                </f:facet>  
+                                                <h:outputText value="#{dependencia.nombre}" /> 
+                                            </p:column> 
+                                            <p:column style="width:150px">  
+                                                <f:facet name="header">  
+                                                    Descripcion  
+                                                </f:facet>  
+                                                <h:outputText value="#{dependencia.descripcion}" />      
+                                            </p:column>
+
+
+                                            <p:column style="width: 20px; text-align: center; "   headerText="Seleccionar"  footerText="Seleccionar" >
+                                                <f:facet name="header">  
+                                                    seleccionar  
+                                                </f:facet> 
+                                                <p:commandLink   update="@form growlmsj pgsublista pglista"  process="@this" action="#{empleadodBean.procesarCambio}" >
+                                                    <f:setPropertyActionListener  target="#{empleadodBean.seleccionada}" value="#{dependencia}" />
+                                                    <h:graphicImage  alt="Seleccionar"  value="/faces/resources/images/iconos/check.png"/>
+                                                </p:commandLink>
+                                            </p:column>
+
+                                        </p:treeTable>
+
+                                        <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+                                            <p:commandButton value="Cancelar" type="button" onclick="confirmation2.hide()" />
+
+                                        </p>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                            </p:dialog>
+
+                        </h:panelGroup>
+                    </h:form>
+                </h:panelGroup>
+
+
+            </ui:define>
+
+            <ui:define name="titulo_salida">
+
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</html>

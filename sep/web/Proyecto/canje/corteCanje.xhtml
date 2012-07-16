@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Corte"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h:outputText value="${corteController.iniciar()}"/>
+
+
+            <h1><h:outputText value="Corte"></h:outputText></h1>
+
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+            <h:form id="fmeditar" prependId="false">
+
+                <h:panelGroup id="pgformulario" >
+
+                    <br />
+                    <p:panel id="pnmaestro" header="Crear Corte" toggleable="true" closable="false"
+                             toggleSpeed="500" collapsed="true"  >
+                        <h:panelGrid columns="2">
+                            <p:outputPanel>
+                                <h3><h:outputText value="Crear Corte"></h:outputText></h3>
+                                <div class="tabla_estandar">
+                                    <table style="width: 80%" class="tabla_estandar">
+                                        <thead>
+                                            <th/><th/>
+                                        </thead>
+
+
+                                        <tr>
+
+                                            <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                                    <h:outputLabel value="Periodo de Corte" for="periodo" />
+                                                </div>
+                                            </td>
+                                            <td style="width:350px;"><div>
+                                                    <h:panelGroup id="periodoc">
+                                                        <h:inputText id="periodo" value="#{corteController.selected.idPeriodo.descripcion}" title="Periodo de Corte" style=" padding: 3px; width:  98%;" readonly="true"/>
+                                                    </h:panelGroup>
+                                                </div>
+                                            </td>
+                                            <td><div style="width: 100%; min-width: 220px" >
+                                                    <p:commandButton type="button" update="elmD2" value="periodo" onclick="confirmation2.show()" />
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="col_titulo" style="width: 50px; min-width: 50px" >
+
+                                                    <h:outputLabel value="Minimo Promedio" for="minp" />
+                                                </div>
+                                            </td>
+                                            <td style="width:50px;"><div>
+                                                    <p:keyboard keypadOnly="true"   value="#{corteController.selected.minimoPromedioPuntos}" style="padding: 3px; width: 30px;"  layout="custom"  
+                                                                id="minp" layoutTemplate="123,456-clear,789-back, 0 " title="Minimo Promedio"/> 
+
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="width: 100%; min-width: 220px" >
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><div class="col_titulo" style="width: 50px; min-width: 50px" >
+
+                                                    <h:outputLabel value="Monto a Repartir" for="saldoi" />
+                                                </div>
+                                            </td>
+                                            <td style="width:50px;"><div>
+                                                    <p:keyboard keypadOnly="false"  readonly="true"   value="#{corteController.monto}" style="padding: 3px; width: 100px;"  layout="custom"  
+                                                                id="saldoi" layoutTemplate="123-close,456-clear,789-back,0." title="Puntos a Repartir"/> 
+
+                                                </div>
+                                            </td>
+                                            <td><div style="width: 100%; min-width: 220px" >
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><div class="col_titulo_sin"></div></td>
+                                            <td><div class="col75">
+                                                    <p:commandButton id="Guardar" update="@form growlmsj pgsublista"  value="#{bundleP.GuardarTitle}" actionListener="#{corteController.create}"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <br />
+                                <br />
+                                <h:panelGroup id="elmD2">
+
+                                    <p:dialog id="elmdialog2"  header="Seleccione El Periodo" width="800" widgetVar="confirmation2"  >
+                                        <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+                                            <p:commandButton value="Cancelar" type="button" onclick="confirmation2.hide()" />
+
+                                        </p>
+
+                                        <h:panelGroup id="pglista2">
+
+                                            <h:panelGroup id="pgsublista2">
+                                                <p:dataTable id="tlazy2" var="item" value="#{corteController.periodos}" paginator="true" rows="20"
+                                                             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                                             rowIndexVar="i" emptyMessage="No hay resultados"  >
+
+
+
+                                                    <p:column  style=" width: 40px; max-width: 40px;" styleClass="campo60"  headerText="Descripcion"
+                                                               footerText="Nombre" >
+                                                        <h:outputText value="#{item.descripcion}" />
+                                                    </p:column>
+                                                    <p:column style="width: 50px;  max-width: 50px;  min-width: 50px;" styleClass="campo60"  headerText="Descripcion"
+                                                              footerText="Descripcion" >
+                                                        <h:outputText value="#{item.fechaInicioEvaluacion.day}-#{item.fechaInicioEvaluacion.month}-#{item.fechaInicioEvaluacion.year}" style="font-size: 14px;" />
+                                                    </p:column>
+                                                    <p:column style="width: 10px;  max-width: 10px; text-align: center;  min-width: 10px;" styleClass="campo60"  headerText="Escala"
+                                                              footerText="Escala" >
+                                                        <h:outputText value="#{item.fechaFinEvaluacion.day}-#{item.fechaFinEvaluacion.month}-#{item.fechaFinEvaluacion.year}" style="font-size: 14px;" />
+                                                    </p:column>
+                                                    <p:column  style="text-align:center; width: 10px; max-width: 10px;" headerText="Seleccionar"   footerText="Seleccionar">
+                                                        <p:commandLink update="periodoc" oncomplete="confirmation2.hide()">
+                                                            <f:setPropertyActionListener value="#{item}"  target="#{corteController.selected.idPeriodo}" />
+                                                            <h:graphicImage  alt="seleccionar" title="Seleccionar"  value="/faces/resources/images/iconos/check.png"/>
+                                                        </p:commandLink>
+                                                    </p:column>
+                                                </p:dataTable>
+
+                                                <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+                                                    <p:commandButton value="Cancelar" type="button" onclick="confirmation2.hide()" />
+
+                                                </p>
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </p:dialog>
+
+                                </h:panelGroup>
+                            </p:outputPanel>
+
+
+                        </h:panelGrid>
+
+
+                    </p:panel>
+
+                </h:panelGroup> 
+
+
+            </h:form>
+            <br/><br/>
+
+            <h:panelGroup id="pglista">
+                <h:form id="fmlista" prependId="false">
+                    <h:panelGroup id="pgsublista">
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            jQuery.noConflict();
+                            $ = jQuery;
+                            $(document).ready(function(){
+                               
+                            
+                                $("#saldoi").attr('readonly','readonly');
+                                $("#saldoc").attr('readonly','readonly');
+                                $("#tasa").attr('readonly','readonly');
+                            
+                               
+                            });   
+                            $(document).ready(function(){
+                               
+                            
+                                $("#saldoc").attr('readonly','readonly');
+                            
+                               
+                            });   
+                            $(document).ready(function(){
+                               
+                            
+                                $("#tasa").attr('readonly','readonly');
+                            
+                               
+                            });   
+                            corregir_tabla();
+                            
+                            
+                            //]]>
+                        </script>
+                        <p:dataTable id="tlazy" var="item" value="#{corteController.cortes}" paginator="true" rows="20"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     rowIndexVar="i" emptyMessage="No hay resultados"  rowEditListener="#{corteController.rowEditListener}" >
+
+
+                            <p:column  style=" width: 10px; max-width: 10px; min-width: 10px;" styleClass="campo60"  headerText="No."
+                                       footerText="No." >
+
+
+                                <h:outputText value="#{i+1}" />
+
+                            </p:column>
+                            <p:column  style=" width: 70px; max-width: 70px; min-width: 70px;" styleClass="campo60"  headerText="Descripcion"
+                                       footerText="Descripcion" >
+
+
+                                <h:outputText value="#{item.idPeriodo.descripcion}" />
+
+                            </p:column>
+
+                            <p:column style="width: 50px; max-width: 50px; min-width: 50px; text-align: center;" styleClass="campo60"  headerText="Puntos a Repartir"    footerText="Puntos a Repartir" >
+
+                                <h:outputText value="#{item.saldoInicial}"/>
+
+
+
+                            </p:column>
+                            <p:column style="width: 50px; max-width: 50px; min-width: 50px;  text-align: center;" styleClass="campo60"  headerText="Puntos Repartidos"    footerText="Puntos Repartidos" >
+
+                                <h:outputText value="#{item.saldoIngreso}"/>
+
+
+                            </p:column>
+                            <p:column style="width: 30px; max-width: 30px; min-width: 30px;  text-align: center;" styleClass="campo60"  headerText="Estado"    footerText="Estado" >
+
+                                <p:cellEditor>  
+
+                                    <f:facet name="output"> 
+
+                                        <h:outputText value="Abierta" style="font-size: 14px;" rendered="#{item.saldoCorte eq '1'}" />
+                                        <h:outputText value="Cerrada" style="font-size: 14px;" rendered="#{item.saldoCorte eq '0'}" />
+
+                                    </f:facet>
+                                    <f:facet name="input">  
+
+                                        <h:selectOneMenu value="#{item.saldoCorte}" >
+
+                                            <f:selectItem itemLabel="Abierta" itemValue="1" />
+                                            <f:selectItem itemLabel="Cerrada" itemValue="0" />
+                                        </h:selectOneMenu>
+
+                                    </f:facet>
+                                </p:cellEditor>
+
+                            </p:column>
+                            <p:column style="width: 40px; max-width: 40px; min-width: 40px;   text-align: center;" styleClass="campo60"  headerText="Min. Promedio"    footerText="Min. Promedio" >
+
+                                <h:outputText value="#{item.minimoPromedioPuntos}"/>
+
+                            </p:column>
+                            <p:column style="width: 25px; max-width: 25px; min-width: 25px;  text-align: center;" styleClass="campo60"  headerText="Tasa de C."    footerText="Tasa de C." >
+
+                                <h:outputText value="#{item.tasaCambio}"/>
+
+                            </p:column>
+
+
+                            <p:column  style="text-align:center; width: 10px; max-width: 10px; min-width: 10px; "  headerText="#{bundleP.EditarTitle}"   footerText="#{bundleP.EditarTitle}" >
+                                <p:rowEditor   />  
+                            </p:column>
+                            <p:column  style="text-align:center; width: 10px; max-width: 10px; min-width: 10px; "  headerText="Sel."   footerText="Sel." >
+                                <p:commandLink action="#{corteController.prepareEmpleadosSeleccionados}" >
+                                    <f:setPropertyActionListener value="#{item}"  target="#{corteController.current}" />
+                                    <h:graphicImage  alt="Seleccionados" title="Seleccionados"  value="/faces/resources/images/iconos/user.png"/>
+                                </p:commandLink>
+                            </p:column>
+
+
+                        </p:dataTable>
+                    </h:panelGroup>
+
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

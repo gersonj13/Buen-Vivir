@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Eliminar Evaluacion"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+
+            <h:form>
+                <br />
+                <p  class="boxy">
+                    &laquo;
+                    <strong style="text-align: left;">
+                        <h:commandLink action="#{eliminarevaluacionController.prepareEmpleados()}" value="Regresar a Lista Empleados" immediate="true"/>
+                    </strong>
+                </p>    </h:form>
+            <br />
+            <h:panelGroup id="pgformulario" >
+                <h:outputText value="${eliminarevaluacionController.iniciar()}"/>
+
+
+
+
+            </h:panelGroup>
+            <br/><br/>
+            <h:panelGroup id="pglista">
+                <h:form id="fmlista" prependId="false">
+                    <h:panelGroup id="pgsublista">
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            corregir_tabla();
+                            //]]>
+                        </script>
+                        <p:dataTable id="tlazy" var="item" value="#{eliminarevaluacionController.evaluacionese}" paginator="true" rows="20"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     rowIndexVar="i" emptyMessage="No hay resultados"  rowEditListener="#{eliminarevaluacionController.rowEditListener}" >
+
+
+
+                            <p:column  style="width: 130px;  max-width: 130px;  min-width: 130px;" styleClass="campo60"  headerText="#{bundleP.CreateFactoresTitle_nombre}"
+                                       footerText="#{bundleP.CreateFactoresTitle_nombre}" >
+
+
+                                <h:outputText value="#{item.idEvaluacion.nombreEvaluacion}" />
+
+                            </p:column>
+
+                            <p:column style="width: 100px;  max-width: 100px;  min-width: 100px;" styleClass="campo60"  headerText="Tipo"
+                                      footerText="Tipo" >
+                                <h:outputText value="#{item.idTipoEvaluacion.nombre}"/>
+
+                            </p:column>
+
+                            <p:column style="width: 40px;  max-width: 40px;  min-width: 40px;" styleClass="campo60"  headerText="Puntaje"
+                                      footerText="Puntaje" >
+                                <h:outputText value="#{item.puntos}"/>
+
+                            </p:column>
+
+                            <p:column  style="text-align:center; width: 5px; min-width: 5px;  max-width: 5px;" headerText="#{bundleP.EliminarTitle}"   footerText="#{bundleP.EliminarTitle}">
+                                <p:commandLink update="elmD" oncomplete="confirmacion.show()">
+                                    <f:setPropertyActionListener value="#{item}"  target="#{eliminarevaluacionController.current}" />
+                                    <h:graphicImage  alt="#{bundleP.EliminarTitle}" title="#{bundleP.EliminarTitle}"  value="/faces/resources/images/iconos/eliminar16.png"/>
+                                </p:commandLink>
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <h:panelGroup id="elmD">
+                        <p:dialog id="cdconfirmacion" header="#{bundleP.CDCabeceraTitle}" widgetVar="confirmacion" >
+                            <h:outputText value="#{bundleP.CDMsjTitle} la Evaluacion?"></h:outputText>
+                            <br/>
+                            <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                                <p:commandButton value="#{bundleP.SiTitle}"  update="growlmsj pgsublista"  oncomplete="confirmacion.hide()" actionListener="#{eliminarevaluacionController.eliminar}"  >
+
+                                </p:commandButton>
+                                <p:commandButton value="#{bundleP.NoTitle}" onclick="confirmacion.hide()" type="button" />
+                            </h:panelGrid>
+                        </p:dialog>
+                    </h:panelGroup>
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

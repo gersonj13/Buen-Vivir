@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <f:view contentType="text/html">
+        <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+            <ui:define name="title">
+                <h:outputText value="Lista de Empleados Seleccionados"></h:outputText>
+            </ui:define>
+
+            <ui:define name="importaciones">
+                <c:if test="#{true}">
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        //]]>
+                    </script>
+                </c:if>
+            </ui:define>
+
+            <ui:define name="contenido_menu">
+            </ui:define>
+
+            <ui:define name="titulo_entrada">
+                <h2>&nbsp;</h2>
+                <h1><h:outputText value="Corte: #{sessionScope['corteSeleccionado'].idPeriodo.descripcion}"></h:outputText></h1>
+            </ui:define>
+
+            <ui:define name="Cuerpo">
+
+
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+
+                <h:outputText value="#{empleadoseleccionadoBean.iniciar()}"/>
+                <h:panelGroup id="pgformulario" >
+
+                    <br />                
+
+                </h:panelGroup>
+
+                <h:panelGroup id="pglista">
+                    <h:form id="fmlista" prependId="false">
+
+                        <p  class="boxy">
+                            &laquo;
+                            <strong style="text-align: left;">
+                                <h:commandLink action="#{empleadoseleccionadoBean.prepareCortes()}" value="Regresar a lista de Cortes" immediate="true"/>
+                            </strong>
+                        </p>
+                        <br/>
+                        <p:separator />
+                        <h:panelGrid columns="1" style="alignment-adjust: center;">
+                            <h:panelGrid columns="8">
+
+                                <h:outputText value="Nombres" /><h:inputText value="#{empleadoseleccionadoBean.filtron}" />
+
+                                <h:outputText value="Apellidos" />  <h:inputText value="#{empleadoseleccionadoBean.filtroa}" />
+
+                                <h:outputText value="Cedula" />  <h:inputText value="#{empleadoseleccionadoBean.filtroc}" />
+                                <h:outputText value=""/>
+                                <p:commandButton action="#{empleadoseleccionadoBean.filtrar}" update="pgsublista" value="Filtrar"/>
+                                <h:outputText value=""/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <p:separator />
+
+                        <h:panelGroup id="pgsublista">
+                            <script type="text/javascript">
+                                //<![CDATA[
+                                corregir_tabla();
+                                function clearAllFilters() {
+                                    $('.ui-datatable thead th.ui-column-filter').val('');
+                                }
+                                //]]>
+                            </script>
+
+                            <p:dataTable id="tlazy" var="item" value="#{empleadoseleccionadoBean.seleccionados}" paginator="true"   rows="50" dynamic="true"
+                                         paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         rowIndexVar="i" emptyMessage="No hay resultados" widgetVar="mit"    >
+
+                              
+                                 <p:column  style="max-width: 10px; width: 10px; text-align: left;" styleClass="campo60"  headerText="No."
+
+                                           footerText="No."    >
+
+                                    <h:outputText value="#{i+1}" style="font-size: 14px;"/>
+                                </p:column>
+                                
+                                <p:column  style="max-width: 150px; width: 150px; text-align: left;" styleClass="campo60"  headerText="#{bundleP.ListEmpleadosNombre}"
+
+                                           footerText="#{bundleP.ListEmpleadosNombre}"    >
+
+                                    <h:outputText value="#{item.idEmpleado.nombres} #{item.idEmpleado.apellidos}" style="font-size: 14px;"/>
+                                </p:column>
+
+                                <p:column  style="max-width: 40px; width: 40px; text-align: center;" styleClass="campo60"  headerText="#{bundleP.ListEmpleadosCedula}"
+                                           footerText="#{bundleP.ListEmpleadosCedula}" >
+
+
+
+                                    <h:outputText value="#{item.idEmpleado.nroIdentificacion}" style="font-size: 14px;"/>
+
+                                </p:column>
+                                <p:column  style="max-width: 40px; width: 40px; text-align: center;" styleClass="campo60"  headerText="Promedio"
+                                           footerText="Promedio" >
+                                    <h:outputText value="#{item.promedioPuntos}" style="font-size: 14px;"/>
+
+                                </p:column>
+                                <p:column  style="max-width: 40px; width: 40px; text-align: center;" styleClass="campo60"  headerText="Pts. Acum."
+                                           footerText="Pts. Acum." >
+                                    <h:outputText value="#{item.puntosAcumulados}" style="font-size: 14px;"/>
+
+                                </p:column>
+                                <p:column  style="max-width: 40px; width: 40px; text-align: center;" styleClass="campo60"  headerText="Pts. Disp."
+                                           footerText="Pts. disp." >
+                                    <h:outputText value="#{item.puntosDisponibles}" style="font-size: 14px;"/>
+
+                                </p:column>
+                                <p:column  style="max-width: 40px; width: 40px; text-align: center;" styleClass="campo60"  headerText="Canjes"
+                                           footerText="Canjes" >
+                                    <h:outputText value="#{item.totalCanjesCorte}" style="font-size: 14px;"/>
+
+                                </p:column>
+
+
+                                <p:column style="max-width: 15px; min-width: 15px; width: 15px; text-align: center;  "   headerText="Ver"  footerText="Ver" >
+                                    <p:commandLink  update="elmD2" action="#{empleadoseleccionadoBean.canjes}" oncomplete="confirmation2.show()" >
+                                        <f:setPropertyActionListener value="#{item}"  target="#{empleadoseleccionadoBean.eseleccionado}" />
+                                        <h:graphicImage  alt="Empleados"  value="/faces/resources/images/iconos/buscar1.png"/>
+                                    </p:commandLink>
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGroup>
+
+                        <h:panelGroup id="elmD2">
+
+                            <p:dialog id="elmdialog2" modal="true"  header="Informacion del Empleado" width="800" widgetVar="confirmation2"  >
+                                <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+
+                                    <p:commandButton value="Cerrar" type="button" onclick="confirmation2.hide()" />
+                                </p>
+
+                                <h3><h:outputText value="Datos del Empleado"></h:outputText></h3>
+                                <p:panel id="pnempleado" header="Datos" toggleable="true" closable="false"
+                                         toggleSpeed="500" collapsed="true"  >
+                                    <table style="width: 50%" class="tabla_estandar">
+                                        <thead>
+                                            <th/><th/>
+                                        </thead>
+                                        <tr>
+                                            <td>
+                                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                                    <h:outputText value="Identificacion"/>
+                                                </div>
+                                            </td>
+                                            <td style="width: 98.5%; min-width: 100px;" >
+                                                <div class="colu75" style="min-width: 120px;">
+                                                    <h:outputText value="V-" rendered="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.tipoIdentificacion eq '86'}"/>
+                                                    <h:outputText value="E-" rendered="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.tipoIdentificacion ne '86'} "/>
+                                                    <h:outputText value="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.nroIdentificacion}" styleClass="campo60"  title="Identificacion"/>
+
+                                                </div></td>
+                                            <td><div class="col_titulo" style="width: 25%; min-width: 150px;" >
+
+                                                    <h:outputLabel value="" />
+                                                </div>
+                                            </td>
+                                            <td rowspan="4"><div style="width: 25%; min-width: 150px; max-width: 300px;" >
+
+                                                    <h:panelGroup id="actualizar" layout="block" style="text-align: center">
+                                                        <h:panelGroup id="ImagenLogo">
+
+                                                            <h:graphicImage height="100" 
+                                                                            width="100" alt="/faces/resources/images/usuarios/#{empleadoseleccionadoBean.eseleccionado.idEmpleado.nombres}"
+                                                                            value="#{empleadoseleccionadoBean.comprobarImagen(empleadoseleccionadoBean.eseleccionado.idEmpleado.codigo)}"/>
+
+                                                        </h:panelGroup>
+
+                                                    </h:panelGroup>
+
+                                                </div></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                                    <h:outputText value="Codigo: "/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="colu75">
+                                                    <h:outputText value="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.codigo}" styleClass="campo60"  title="Codigo"/>
+                                                </div></td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td>
+                                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                                    <h:outputText value="Nombres:"/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="colu75">
+                                                    <h:outputText value="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.nombres}" styleClass="campo60"  title="Nombres"/>
+                                                </div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                                    <h:outputText value="Apellidos: "/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="colu75">
+                                                    <h:outputText value="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.apellidos}" styleClass="campo60"  title="Apellidos"/>
+                                                </div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                                    <h:outputText value="Cargo:"/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="colu75">
+                                                    <h:outputText value="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.idCargo.nombre}" styleClass="campo60"  title="Cargo"/>
+                                                </div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                                    <h:outputText value="Correo"/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="colu75">
+                                                    <h:outputText value="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.correo}" styleClass="campo60"  title="Correo"/>
+                                                </div></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                                    <h:outputText value="Fecha Nacimiento"/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="colu75">
+                                                    <h:outputText value="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.fechaNacimiento.day}-#{empleadoseleccionadoBean.eseleccionado.idEmpleado.fechaNacimiento.month}-#{empleadoseleccionadoBean.eseleccionado.idEmpleado.fechaNacimiento.year}" styleClass="campo60"  title="Fecha Nacimiento"/>
+
+                                                </div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="col_titulo" style="width: 98.5%; min-width: 150px;" >
+                                                    <h:outputText value="Fecha Ingreso"/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="colu75">
+                                                    <h:outputText value="#{empleadoseleccionadoBean.eseleccionado.idEmpleado.fechaIngreso.day}-#{empleadoseleccionadoBean.eseleccionado.idEmpleado.fechaIngreso.month}-#{empleadoseleccionadoBean.eseleccionado.idEmpleado.fechaIngreso.year}" styleClass="campo60"  title="Fecha Ingreso"/>
+
+                                                </div></td>
+                                        </tr>
+
+
+                                    </table>
+                                </p:panel>
+
+                                <h3><h:outputText value="Canjes Realizados por el Empleado"></h:outputText></h3>
+                                <p:panel id="pncanjes" header="Canjes" toggleable="true" closable="false"
+                                         toggleSpeed="500" collapsed="true"  >
+
+                                    <p:dataTable id="tcanje" var="itemx" value="#{empleadoseleccionadoBean.canje}" paginator="true"   rows="50" dynamic="true"
+                                                 paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                                 rowIndexVar="j" emptyMessage="No hay resultados" widgetVar="mit" rowEditListener="#{empleadoseleccionadoBean.rowEditListener}"   >
+
+
+                                        <p:column  style="max-width: 20px; width: 20px; text-align: left;" styleClass="campo60"  headerText="Nro"
+
+                                                   footerText="Nro Seguridad"    >
+
+                                            <h:outputText value="#{itemx.id}" style="font-size: 14px;"/>
+                                        </p:column>
+                                        <p:column  style="max-width: 150px; width: 150px; text-align: left; #{empleadoseleccionadoBean.estilo(itemx.idComercio)} " styleClass="campo60"  headerText="Puntos Canjeados"
+
+                                                   footerText="Puntos Canjeados"    >
+
+                                            <h:outputText value="#{itemx.puntos}" style="font-size: 14px; #{empleadoseleccionadoBean.estilo(itemx.idComercio)} "/>
+                                        </p:column>
+
+                                        <p:column  style="max-width: 20px; width: 20px; text-align: left; #{empleadoseleccionadoBean.estilo(itemx.idComercio)} " styleClass="campo60"  headerText="Estado"
+
+                                                   footerText="Estado"    >
+                                            <p:cellEditor>  
+
+                                                <f:facet name="output"> 
+
+                                                    <h:outputText value="Proc." style="font-size: 14px;" rendered="#{itemx.idComercio eq '1'}" />
+                                                    <h:outputText value="Pend." style="font-size: 14px;" rendered="#{itemx.idComercio eq '0'}" />
+
+                                                </f:facet>
+                                                <f:facet name="input">  
+
+                                                    <h:selectOneMenu value="#{itemx.idComercio}" >
+
+                                                        <f:selectItem itemLabel="Pend." itemValue="0" />
+                                                        <f:selectItem itemLabel="Proc." itemValue="1" />
+                                                    </h:selectOneMenu>
+
+                                                </f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column  style="max-width: 20px; width: 20px; text-align: left; #{empleadoseleccionadoBean.estilo(itemx.idComercio)} " styleClass="campo60"  headerText="Estado"
+                                                   footerText="Estado"    >
+
+                                            <p:rowEditor/>
+
+                                        </p:column>
+
+                                    </p:dataTable>
+
+
+                                </p:panel>
+
+                                <p class="boxy" style="border-bottom-width: 1px;" align="center" >
+
+                                    <p:commandButton value="Cerrar" type="button" onclick="confirmation2.hide()" />
+
+                                </p>
+
+
+                            </p:dialog>
+
+                        </h:panelGroup>
+                    </h:form>
+                </h:panelGroup>
+
+
+            </ui:define>
+
+            <ui:define name="titulo_salida">
+
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</html>

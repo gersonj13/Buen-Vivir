@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundleP.ListEvaluacionesTitle}"></h:outputText>
+
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <style type="text/css">
+
+                    .pintar:hover{
+
+                        background-color: moccasin;
+                    }
+
+                </style>
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+            <h1><h:outputText value="Lista de Dependencias"></h:outputText></h1>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+
+            <h:panelGroup id="pgformulario" >
+                <h:outputText value="${dependenciasBean.cargarArbol()}"/>
+                <br />                
+
+            </h:panelGroup>
+
+            <h:panelGroup id="pglista" style="alignment-adjust: central; text-align: center; alignment-baseline: central;" >
+                <h:form id="fmlista" prependId="false" style="alignment-adjust: central; alignment-baseline: central; text-align: center;">
+                    <h:panelGroup id="pgsublista" >
+
+                        <p:treeTable value="#{dependenciasBean.root}" styleClass="pintar"  var="dependencia" expanded="false"  style="text-align: left;">  
+                            <f:facet name="header">  
+                                Lista de Dependencias
+                            </f:facet>  
+
+                            <p:column style="width:70px; text-align: left; "  styleClass="pintar"  >  
+                                <f:facet name="header" >  
+                                    Nombre  
+                                </f:facet>  
+                                <h:outputText value="#{dependencia.nombre}"   /> 
+                            </p:column> 
+                            <p:column style="width:150px" styleClass="pintar" >  
+                                <f:facet name="header">  
+                                    Descripcion  
+                                </f:facet>  
+                                <h:outputText value="#{dependencia.descripcion}" />      
+                            </p:column>
+
+                            <p:column style="text-align: center; width: 40px;" styleClass="pintar" >
+                                <f:facet name="header">  
+                                    Agregar  
+                                </f:facet>  
+                                <p:commandLink oncomplete="confirmation.show()" update="elmD"   action="#{dependenciasBean.prepareCreate()}">
+                                    <f:setPropertyActionListener target="#{dependenciasBean.selected}" value="#{dependencia}" />
+                                    <h:graphicImage  alt="Agregar"  value="/faces/resources/images/iconos/group.gif"/>
+                                </p:commandLink>
+                            </p:column> 
+                            <p:column style="text-align: center; width: 40px;" styleClass="pintar" >
+                                <f:facet name="header">  
+                                    Editar  
+                                </f:facet>  
+                                <p:commandLink oncomplete="confirmation3.show()" update="elmD3"   actionListener="#{dependenciasBean.prepareEdit()}">
+                                    <f:setPropertyActionListener target="#{dependenciasBean.selected}" value="#{dependencia}" />
+                                    <h:graphicImage  alt="Editar"  value="/faces/resources/images/iconos/editar16.gif"/>
+                                </p:commandLink>
+                            </p:column> 
+                            <p:column style="text-align: center; width: 40px;" styleClass="pintar" >
+                                <f:facet name="header">  
+                                    Eliminar  
+                                </f:facet>  
+                                <p:commandLink oncomplete="confirmation2.show()" update="elmD2"   action="#{dependenciasBean.prepareDelete()}">
+                                    <f:setPropertyActionListener target="#{dependenciasBean.selected}" value="#{dependencia}" />
+                                    <h:graphicImage  alt="Eliminar"  value="/faces/resources/images/iconos/eliminar16.png"/>
+                                </p:commandLink>
+                            </p:column> 
+                            <p:column style="text-align: center; width: 40px;" styleClass="pintar" >
+                                <f:facet name="header">  
+                                    Empleados  
+                                </f:facet>  
+                                <p:commandLink    action="#{dependenciasBean.prepareEmpleados()}">
+                                    <f:setPropertyActionListener target="#{dependenciasBean.selected}" value="#{dependencia}" />
+                                    <h:graphicImage  alt="Empleados"  value="/faces/resources/images/iconos/emp.gif"/>
+                                </p:commandLink>
+                            </p:column> 
+                        </p:treeTable>
+
+
+
+
+                    </h:panelGroup>
+                    <h:panelGroup id="elmD">
+
+
+                        <p:dialog id="elmdialog" width="700" header="Agregar Dependencia" widgetVar="confirmation" >
+
+                            <div class="tabla_estandar">
+                                <table style="width: 80%" class="tabla_estandar">
+                                    <thead>
+                                        <th/><th/>
+                                    </thead>
+                                    <tr>
+                                        <td><div class="col_titulo" style="width: 100%; min-width: 100px" >
+                                                <h:outputText value="*" style="color: darkred" title="Obligatorio"/> 
+                                                <h:outputLabel value="Padre" for="nombrep" />
+                                            </div>
+                                        </td>
+                                        <td style="width:250px;"><div>
+                                                <h:outputText id="nombrep" value="#{dependenciasBean.selected.nombre}" title="Padre" styleClass="campo98" />
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><div class="col_titulo" style="width: 100%; min-width: 100px" >
+                                                <h:outputText value="*" style="color: darkred" title="Obligatorio"/> 
+                                                <h:outputLabel value="Nombre" for="nombre" />
+                                            </div>
+                                        </td>
+                                        <td style="width:250px;"><div>
+                                                <h:inputText id="nombre" value="#{dependenciasBean.currentagregar.nombre}" title="Nombre" styleClass="campo98" />
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+                                                <h:outputText value="*" style="color: darkred" title="Obligatorio"/> 
+                                                <h:outputLabel value="Descripcion:" for="desco" />
+                                            </div>
+                                        </td>
+                                        <td style="width:250px;"><div>
+                                                <h:inputText id="desco" value="#{dependenciasBean.currentagregar.descripcion}" title="Descripcion" styleClass="campo98"/>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td><div class="col_titulo_sin"></div></td>
+                                        <td>
+
+                                            <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                                                <p:commandButton id="Guardar"  update="@form growlmsj pgsublista"  value="Agregar" oncomplete="confirmation.hide()" action="#{dependenciasBean.Crear()}" />
+
+                                                <p:commandButton value="Cancelar" onclick="confirmation.hide()" type="button" />
+                                            </h:panelGrid>   
+
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br />
+                            <br />
+
+
+                        </p:dialog>
+                    </h:panelGroup>
+                    <h:panelGroup id="elmD3">
+                        <p:dialog id="elmdialog3" width="700" header="Editar Dependencia" widgetVar="confirmation3"  >
+
+                            <div class="tabla_estandar">
+                                <table style="width: 80%" class="tabla_estandar">
+                                    <thead>
+                                        <th/><th/>
+                                    </thead>
+                                    <tr>
+                                        <td><div class="col_titulo" style="width: 100%; min-width: 100px" >
+                                                <h:outputText value="*" style="color: darkred" title="Obligatorio"/> 
+                                                <h:outputLabel value="ID" for="nombrep" />
+                                            </div>
+                                        </td>
+                                        <td style="width:250px;"><div>
+                                                <h:outputText id="nombrep3" value="#{dependenciasBean.selected.id}" title="Padre" styleClass="campo98" rendered="#{dependenciasBean.selected.id ne null}" />
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><div class="col_titulo" style="width: 100%; min-width: 100px" >
+                                                <h:outputText value="*" style="color: darkred" title="Obligatorio"/> 
+                                                <h:outputLabel value="Nombre" for="nombre3" />
+                                            </div>
+                                        </td>
+                                        <td style="width:250px;"><div>
+                                                <h:inputText id="nombre3" value="#{dependenciasBean.selected.nombre}" title="Nombre" styleClass="campo98" rendered="#{dependenciasBean.selected.nombre ne null}" />
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+                                                <h:outputText value="*" style="color: darkred" title="Obligatorio"/> 
+                                                <h:outputLabel value="Descripcion:" for="desco3" />
+                                            </div>
+                                        </td>
+                                        <td style="width:250px;"><div>
+                                                <h:inputText id="desco3" value="#{dependenciasBean.selected.descripcion}" title="Descripcion" styleClass="campo98" rendered="#{dependenciasBean.selected.id ne null}"/>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td><div class="col_titulo_sin"></div></td>
+                                        <td>
+
+                                            <h:panelGrid id="display3" columns="2" cellpadding="4">
+
+                                                <p:commandButton id="Guardar3"   update="@form growlmsj pgsublista"  value="Editar" oncomplete="confirmation3.hide()" action="#{dependenciasBean.Edit()}" />
+
+                                                <p:commandButton value="Cancelar" onclick="confirmation3.hide()" type="button" />
+                                            </h:panelGrid>   
+
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br />
+                            <br />
+
+
+                        </p:dialog>
+                    </h:panelGroup>
+                    <h:panelGroup id="elmD2">
+                        <p:dialog id="elmdialog2"  header="Eliminar Dependencia" widgetVar="confirmation2" >
+
+                            <h:outputText value="Desea eliminar la dependencia? esta accion eliminaria todos las dependencias descendientes."></h:outputText>
+                            <br/>
+                            <br/>
+                            <div class="tabla_estandar" align="center">
+                                <h:panelGrid id="display2" columns="2" cellpadding="4">
+
+                                    <p:commandButton id="Guardar2"  update="@form growlmsj pgsublista"  value="Eliminar" oncomplete="confirmation2.hide()" action="#{dependenciasBean.Delete()}" />
+
+                                    <p:commandButton value="Cancelar" onclick="confirmation2.hide()" type="button" />
+                                </h:panelGrid>   
+
+                            </div>
+
+
+                            <br />
+                            <br />
+
+
+                        </p:dialog>
+
+                    </h:panelGroup>	
+                </h:form>
+            </h:panelGroup>
+
+
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

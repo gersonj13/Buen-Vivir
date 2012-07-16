@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+     
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Cargos"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h:outputText value="${cargosController.iniciar()}"/>
+
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+            <h:form id="fmeditar" prependId="false">
+
+                <h:panelGroup id="pgformulario" >
+
+                    <br />
+
+                    <p:panel id="pnmaestro" header="Crear Cargo" toggleable="true" closable="false"
+                             toggleSpeed="500" collapsed="true"  >
+                        <h3><h:outputText value="Crear Cargo"></h:outputText></h3>
+                        <div class="tabla_estandar">
+                            <table style="width: 80%" class="tabla_estandar">
+                                <thead>
+                                    <th/><th/>
+                                </thead>
+
+                                <tr>
+                                    <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                            <h:outputLabel value="Cargo" for="nombre" />
+                                        </div>
+                                    </td>
+                                    <td style="width:250px;"><div>
+                                            <h:inputText id="nombre" value="#{cargosController.selected.nombre}" title="Cargo" styleClass="campo98" />
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="col_titulo_sin"></div></td>
+                                    <td><div class="col75">
+                                            <!-- Botones      -->                                            
+                                            <p:commandButton id="Guardar" update="@form growlmsj pgsublista"  value="#{bundleP.GuardarTitle}" actionListener="#{cargosController.create}"  />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br />
+                        <br />
+
+                    </p:panel>
+
+                </h:panelGroup>  
+            </h:form>
+            <br/><br/>
+
+            <h:panelGroup id="pglista">
+                <h:form id="fmlista" prependId="false">
+                    <br/>
+                    <p:separator />
+                    <h:panelGrid columns="1" style="alignment-adjust: center;">
+                        <h:panelGrid columns="8">
+                            <h:outputText value="Nombre" /><h:inputText value="#{cargosController.filtro}" />
+                            <h:outputText value=""/>
+                            <p:commandButton action="#{cargosController.filtrar}" update="pgsublista" value="Filtrar"/>
+                            <h:outputText value=""/>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                    <p:separator />
+                    <h:panelGroup id="pgsublista">
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            corregir_tabla();
+                            //]]>
+                        </script>
+                        <p:dataTable id="tlazy" var="item" value="#{cargosController.cargos}" paginator="true" rows="20"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     rowIndexVar="i" emptyMessage="No hay resultados"  rowEditListener="#{cargosController.rowEditListener}" >
+
+
+
+                            <p:column  style=" width: 170px; max-width: 170px;" styleClass="campo60"  headerText="Cargo"
+                                       footerText="Cargo" >
+
+                                <p:cellEditor>  
+                                    <f:facet name="output">   
+                                        <h:outputText value="#{item.nombre}" />
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <h:inputText value="#{item.nombre}" style="width:100%"/>  
+                                    </f:facet>  
+                                </p:cellEditor> 
+                            </p:column>
+
+
+                            <p:column  style="text-align:center; width: 10px; max-width: 10px; min-width: 10px;"  headerText="#{bundleP.EditarTitle}"   footerText="#{bundleP.EditarTitle}" >
+                                <p:rowEditor  />  
+                            </p:column>
+                            <p:column  style="text-align:center; width: 10px; max-width: 10px; min-width: 10px;" headerText="#{bundleP.EliminarTitle}"   footerText="#{bundleP.EliminarTitle}">
+                                <p:commandLink update="elmD" oncomplete="confirmacion.show()">
+                                    <f:setPropertyActionListener value="#{item}"  target="#{cargosController.current}" />
+                                    <h:graphicImage  alt="#{bundleP.EliminarTitle}" title="#{bundleP.EliminarTitle}"  value="/faces/resources/images/iconos/eliminar16.png"/>
+                                </p:commandLink>
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <h:panelGroup id="elmD">
+                        <p:dialog id="cdconfirmacion" header="#{bundleP.CDCabeceraTitle}" widgetVar="confirmacion" >
+                            <h:outputText value="#{bundleP.CDMsjTitle} el Cargo?"></h:outputText>
+                            <br/>
+                            <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                                <p:commandButton value="#{bundleP.SiTitle}"  update="growlmsj pgsublista"  oncomplete="confirmacion.hide()" actionListener="#{cargosController.eliminar}"  >
+
+                                </p:commandButton>
+                                <p:commandButton value="#{bundleP.NoTitle}" onclick="confirmacion.hide()" type="button" />
+                            </h:panelGrid>
+                        </p:dialog>
+                    </h:panelGroup>	
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Reporte Evaluaciones"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+            <h1><h:outputText value="Reporte Evaluaciones Gerente"></h:outputText></h1>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+
+            <h:panelGroup id="pgformulario" >
+                <h:outputText value="${reporteEvaluacionesGerenteController.iniciar()}"/>
+            </h:panelGroup>
+            <br/><br/>
+            <h:panelGroup id="pglista">
+                <h:form id="fmlista" prependId="false">
+                    <h:panelGroup id="pgsublista">
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            corregir_tabla();
+                            //]]>
+                        </script>
+
+                        <p:dataTable id="tlazy" var="item" value="#{reporteEvaluacionesGerenteController.evaluaciones}" paginator="true" rows="20"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     rowIndexVar="i" emptyMessage="No hay resultados"  >
+
+
+
+                            <p:column style="width: 50px; max-width: 50px; min-width: 50px; text-align: center; " styleClass="campo60"  headerText="#{bundleP.ListEvaluacionesNombre}"
+
+                                      footerText="#{bundleP.ListEvaluacionesNombre}"    >
+
+                                <h:outputText value="#{item.nombreEvaluacion}" style="font-size: 14px;"/>
+                            </p:column>
+
+                            <p:column style="max-width: 15px; width: 15px; text-align: center;  "   headerText="#{bundleP.ListEvaluacionesPeso}"
+                                      footerText="#{bundleP.ListEvaluacionesPeso}" >
+
+
+                                <h:outputText value="#{item.peso}" style="width: 10px;" />
+
+
+                            </p:column>
+
+                            <p:column style="width: 20px;  text-align: center;" styleClass="campo60"  headerText="#{bundleP.ListEvaluacionesFechaI}"    footerText="#{bundleP.ListEvaluacionesFechaI}" >
+
+                                <h:outputText value="#{item.fechaInicio.day}-#{item.fechaInicio.month}-#{item.fechaInicio.year}" style="font-size: 14px;" />
+                            </p:column>
+                            <p:column style="width: 20px; text-align: center;" styleClass="campo60"  headerText="#{bundleP.ListEvaluacionesFechaF}"
+                                      footerText="#{bundleP.ListEvaluacionesFechaF}" >
+
+                                <h:outputText value="#{item.fechaFin.day}-#{item.fechaFin.month}-#{item.fechaFin.year}" style="font-size: 14px;" />
+
+                            </p:column>
+                            <p:column style="width: 20px; text-align: center; "   headerText="#{bundleP.ListEvaluacionesDependencia}" footerText="#{bundleP.ListEvaluacionesDependencia}" >
+                                <h:outputText value="#{item.idDependencia.nombre}" style="font-size: 14px;"/>
+                            </p:column>
+                            <p:column  style="text-align:center; width: 25px; min-width: 25px;  max-width: 25px;" headerText="No Evaluados"   footerText="No Evaluados">
+                                <p:commandLink ajax="false"   action="#{reporteEvaluacionesGerenteController.ProcesarGeneral()}" update="growlmsj"   >
+                                    <f:setPropertyActionListener value="#{item}"  target="#{reporteEvaluacionesGerenteController.current}" />
+                                    <h:graphicImage  alt="No Evaluados" title="No Evaluados"  value="/faces/resources/images/iconos/noevaluado.png"/>
+                                </p:commandLink>
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <br/><br/>
+
+
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

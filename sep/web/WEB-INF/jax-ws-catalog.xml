@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://192.168.70.140:35579/EVAServices/GestionEvaluacion?wsdl" uri="wsdl/192.168.70.140_35579/EVAServices/GestionEvaluacion.wsdl"/>
+    <system systemId="http://192.168.70.140:35579/EVAServices/GestionEvaluacion?xsd=1" uri="wsdl/192.168.70.140_35579/EVAServices/GestionEvaluacion.xsd_1.xsd"/>
+    <system systemId="http://172.23.100.177:8080/EVAServices/GestionEvaluacion?wsdl" uri="wsdl/172.23.100.177_8080/EVAServices/GestionEvaluacion.wsdl"/>
+    <system systemId="http://10.70.211.152:8181/EVAServices/GestionEvaluacion?WSDL" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.wsdl"/>
+    <system systemId="http://buenvivir.seguroshorizonte.com:8080/EVAServices/GestionEvaluacion?wsdl" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.wsdl"/>
+    <system systemId="http://buenvivir.seguroshorizonte.com:8080/EVAServices/GestionEvaluacion?xsd=1" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.xsd_1.xsd"/>
+    <system systemId="http://buenvivir.seguroshorizonte.com:8080/EVAServices/GestionEvaluacion?xsd=2" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.xsd_2.xsd"/>
+    <system systemId="http://172.19.4.201:8181/EVAServices/GestionEvaluacion?wsdl" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.wsdl"/>
+    <system systemId="http://172.19.4.201:8181/EVAServices/GestionEvaluacion?xsd=1" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.xsd_1.xsd"/>
+    <system systemId="http://172.19.4.201:8181/EVAServices/GestionEvaluacion?xsd=2" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.xsd_2.xsd"/>
+    <system systemId="http://10.70.211.152:8181/EVAServices/GestionEvaluacion?wsdl" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.wsdl"/>
+    <system systemId="http://10.70.211.152:8181/EVAServices/GestionEvaluacion?xsd=1" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.xsd_1.xsd"/>
+    <system systemId="http://10.70.211.152:8181/EVAServices/GestionEvaluacion?xsd=2" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.xsd_2.xsd"/>
+    <system systemId="http://172.23.100.177:8080/EVAServices/GestionEvaluacion?WSDL" uri="wsdl/172.23.100.177_8080/EVAServices/GestionEvaluacion.wsdl"/>
+    <system systemId="http://172.23.100.177:8080/EVAServices/GestionEvaluacion?xsd=1" uri="wsdl/172.23.100.177_8080/EVAServices/GestionEvaluacion.xsd_1.xsd"/>
+    <system systemId="http://172.23.100.177:8080/EVAServices/GestionEvaluacion?xsd=2" uri="wsdl/172.23.100.177_8080/EVAServices/GestionEvaluacion.xsd_2.xsd"/>
+    <system systemId="http://localhost:8080/EVAServices/GestionEvaluacion?wsdl" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.wsdl"/>
+    <system systemId="http://localhost:8080/EVAServices/GestionEvaluacion?xsd=1" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/EVAServices/GestionEvaluacion?xsd=2" uri="wsdl/localhost_8080/EVAServices/GestionEvaluacion.xsd_2.xsd"/>
+</catalog>

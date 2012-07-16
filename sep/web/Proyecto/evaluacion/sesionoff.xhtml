@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/resources/plantillas/plantillaInicio.xhtml">
+
+        <ui:define name="title">
+            ${bundleP.PangeaNameTitle} - ${bundleP.LoginTitle}
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <h:outputStylesheet name="pangea/flick/skin.css" />
+
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+            <h:form prependId="false" style=" margin: 2px;">
+                <f:view contentType="text/html">
+                    <p:growl id="growl" showDetail="true" />
+                </f:view>
+                <br/>
+                <p:focus />
+
+                <h3> No ha iniciado session</h3>
+
+
+                <h:outputText id="txt_count" value="Redireccionando en #{sessionBean.contador}" />
+                <p:focus for="irSession" />
+                <p:poll actionListener="#{sessionBean.increment}" update="txt_count" />
+                <p:button id="irSession" value="Iniciar Sesion" outcome="/login/index"/>
+                <br/>
+
+
+
+
+
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+
+
+</html>

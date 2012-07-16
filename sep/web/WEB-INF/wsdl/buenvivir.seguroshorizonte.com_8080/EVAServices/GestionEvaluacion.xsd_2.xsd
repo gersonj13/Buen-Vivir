@@ -1,0 +1,1869 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.2-b13 (branches/2.2-6964; 2012-01-09T18:04:18+0000) JAXWS-RI/2.2.6-promoted-b20 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://evaservices.seguroshorizonte.com/" xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://evaservices.seguroshorizonte.com/">
+
+<xs:import namespace="http://jaxb.dev.java.net/array" schemaLocation="http://buenvivir.seguroshorizonte.com:8080/EVAServices/GestionEvaluacion?xsd=1"/>
+
+<xs:element name="EvaluacionFecha" type="tns:EvaluacionFecha"/>
+
+<xs:element name="EvaluacionFechaResponse" type="tns:EvaluacionFechaResponse"/>
+
+<xs:element name="ParseException" type="tns:ParseException"/>
+
+<xs:element name="RetornaDependenciasNivel" type="tns:RetornaDependenciasNivel"/>
+
+<xs:element name="RetornaDependenciasNivelResponse" type="tns:RetornaDependenciasNivelResponse"/>
+
+<xs:element name="RetornaEvaluacionesReporte" type="tns:RetornaEvaluacionesReporte"/>
+
+<xs:element name="RetornaEvaluacionesReporteResponse" type="tns:RetornaEvaluacionesReporteResponse"/>
+
+<xs:element name="actualizaSupervisor" type="tns:actualizaSupervisor"/>
+
+<xs:element name="actualizaSupervisorResponse" type="tns:actualizaSupervisorResponse"/>
+
+<xs:element name="actualizarCorte" type="tns:actualizarCorte"/>
+
+<xs:element name="actualizarCorteResponse" type="tns:actualizarCorteResponse"/>
+
+<xs:element name="actualizarPlanteamientoEval" type="tns:actualizarPlanteamientoEval"/>
+
+<xs:element name="actualizarPlanteamientoEvalResponse" type="tns:actualizarPlanteamientoEvalResponse"/>
+
+<xs:element name="actualizarSeleccionado" type="tns:actualizarSeleccionado"/>
+
+<xs:element name="actualizarSeleccionadoResponse" type="tns:actualizarSeleccionadoResponse"/>
+
+<xs:element name="agregarCargo" type="tns:agregarCargo"/>
+
+<xs:element name="agregarCargoResponse" type="tns:agregarCargoResponse"/>
+
+<xs:element name="agregarDependencia" type="tns:agregarDependencia"/>
+
+<xs:element name="agregarDependenciaResponse" type="tns:agregarDependenciaResponse"/>
+
+<xs:element name="agregarEmpleado" type="tns:agregarEmpleado"/>
+
+<xs:element name="agregarEmpleadoResponse" type="tns:agregarEmpleadoResponse"/>
+
+<xs:element name="agregarEstadoEmpleado" type="tns:agregarEstadoEmpleado"/>
+
+<xs:element name="agregarEstadoEmpleadoResponse" type="tns:agregarEstadoEmpleadoResponse"/>
+
+<xs:element name="agregarUsuario" type="tns:agregarUsuario"/>
+
+<xs:element name="agregarUsuarioResponse" type="tns:agregarUsuarioResponse"/>
+
+<xs:element name="cambiarDependencia" type="tns:cambiarDependencia"/>
+
+<xs:element name="cambiarDependenciaResponse" type="tns:cambiarDependenciaResponse"/>
+
+<xs:element name="canje" type="tns:canje"/>
+
+<xs:element name="cargo" type="tns:cargo"/>
+
+<xs:element name="comprobarCorreo" type="tns:comprobarCorreo"/>
+
+<xs:element name="comprobarCorreoResponse" type="tns:comprobarCorreoResponse"/>
+
+<xs:element name="consultarDependencia" type="tns:consultarDependencia"/>
+
+<xs:element name="consultarDependenciaResponse" type="tns:consultarDependenciaResponse"/>
+
+<xs:element name="corte" type="tns:corte"/>
+
+<xs:element name="corteMaximo" type="tns:corteMaximo"/>
+
+<xs:element name="corteMaximoResponse" type="tns:corteMaximoResponse"/>
+
+<xs:element name="creaestadoSupervisor" type="tns:creaestadoSupervisor"/>
+
+<xs:element name="creaestadoSupervisorResponse" type="tns:creaestadoSupervisorResponse"/>
+
+<xs:element name="crearCorte" type="tns:crearCorte"/>
+
+<xs:element name="crearCorteResponse" type="tns:crearCorteResponse"/>
+
+<xs:element name="crearEvaluacion" type="tns:crearEvaluacion"/>
+
+<xs:element name="crearEvaluacionResponse" type="tns:crearEvaluacionResponse"/>
+
+<xs:element name="crearFactor" type="tns:crearFactor"/>
+
+<xs:element name="crearFactorResponse" type="tns:crearFactorResponse"/>
+
+<xs:element name="crearPeriodo" type="tns:crearPeriodo"/>
+
+<xs:element name="crearPeriodoResponse" type="tns:crearPeriodoResponse"/>
+
+<xs:element name="crearPlanteamiento" type="tns:crearPlanteamiento"/>
+
+<xs:element name="crearPlanteamientoResponse" type="tns:crearPlanteamientoResponse"/>
+
+<xs:element name="crearPresentacion" type="tns:crearPresentacion"/>
+
+<xs:element name="crearPresentacionResponse" type="tns:crearPresentacionResponse"/>
+
+<xs:element name="crearformatoEvaluacion" type="tns:crearformatoEvaluacion"/>
+
+<xs:element name="crearformatoEvaluacionResponse" type="tns:crearformatoEvaluacionResponse"/>
+
+<xs:element name="crearformatoevalplanteamiento" type="tns:crearformatoevalplanteamiento"/>
+
+<xs:element name="crearformatoevalplanteamientoResponse" type="tns:crearformatoevalplanteamientoResponse"/>
+
+<xs:element name="crearformatofactor" type="tns:crearformatofactor"/>
+
+<xs:element name="crearformatofactorResponse" type="tns:crearformatofactorResponse"/>
+
+<xs:element name="datosEvaluaciones" type="tns:datosEvaluaciones"/>
+
+<xs:element name="datosEvaluacionesResponse" type="tns:datosEvaluacionesResponse"/>
+
+<xs:element name="deduccionesEmpleado" type="tns:deduccionesEmpleado"/>
+
+<xs:element name="deduccionesEmpleadoResponse" type="tns:deduccionesEmpleadoResponse"/>
+
+<xs:element name="dependencia" type="tns:dependencia"/>
+
+<xs:element name="editarCanje" type="tns:editarCanje"/>
+
+<xs:element name="editarCanjeResponse" type="tns:editarCanjeResponse"/>
+
+<xs:element name="editarCargo" type="tns:editarCargo"/>
+
+<xs:element name="editarCargoResponse" type="tns:editarCargoResponse"/>
+
+<xs:element name="editarCorte" type="tns:editarCorte"/>
+
+<xs:element name="editarCorteResponse" type="tns:editarCorteResponse"/>
+
+<xs:element name="editarDependencia" type="tns:editarDependencia"/>
+
+<xs:element name="editarDependenciaResponse" type="tns:editarDependenciaResponse"/>
+
+<xs:element name="editarEmpleado" type="tns:editarEmpleado"/>
+
+<xs:element name="editarEmpleadoResponse" type="tns:editarEmpleadoResponse"/>
+
+<xs:element name="editarEvaluacion" type="tns:editarEvaluacion"/>
+
+<xs:element name="editarEvaluacionResponse" type="tns:editarEvaluacionResponse"/>
+
+<xs:element name="editarFactor" type="tns:editarFactor"/>
+
+<xs:element name="editarFactorResponse" type="tns:editarFactorResponse"/>
+
+<xs:element name="editarPeriodo" type="tns:editarPeriodo"/>
+
+<xs:element name="editarPeriodoResponse" type="tns:editarPeriodoResponse"/>
+
+<xs:element name="editarPlanteamiento" type="tns:editarPlanteamiento"/>
+
+<xs:element name="editarPlanteamientoResponse" type="tns:editarPlanteamientoResponse"/>
+
+<xs:element name="editarPresentacion" type="tns:editarPresentacion"/>
+
+<xs:element name="editarPresentacionResponse" type="tns:editarPresentacionResponse"/>
+
+<xs:element name="editarformatoEvaluacion" type="tns:editarformatoEvaluacion"/>
+
+<xs:element name="editarformatoEvaluacionResponse" type="tns:editarformatoEvaluacionResponse"/>
+
+<xs:element name="editarformatofactor" type="tns:editarformatofactor"/>
+
+<xs:element name="editarformatofactorResponse" type="tns:editarformatofactorResponse"/>
+
+<xs:element name="eliminaEvaluacionEmpleado" type="tns:eliminaEvaluacionEmpleado"/>
+
+<xs:element name="eliminaEvaluacionEmpleadoResponse" type="tns:eliminaEvaluacionEmpleadoResponse"/>
+
+<xs:element name="eliminarCargo" type="tns:eliminarCargo"/>
+
+<xs:element name="eliminarCargoResponse" type="tns:eliminarCargoResponse"/>
+
+<xs:element name="eliminarDependencia" type="tns:eliminarDependencia"/>
+
+<xs:element name="eliminarDependenciaResponse" type="tns:eliminarDependenciaResponse"/>
+
+<xs:element name="eliminarEmpleado" type="tns:eliminarEmpleado"/>
+
+<xs:element name="eliminarEmpleadoEvaluacion" type="tns:eliminarEmpleadoEvaluacion"/>
+
+<xs:element name="eliminarEmpleadoEvaluacionResponse" type="tns:eliminarEmpleadoEvaluacionResponse"/>
+
+<xs:element name="eliminarEmpleadoResponse" type="tns:eliminarEmpleadoResponse"/>
+
+<xs:element name="eliminarEmpleadoRevision" type="tns:eliminarEmpleadoRevision"/>
+
+<xs:element name="eliminarEmpleadoRevisionResponse" type="tns:eliminarEmpleadoRevisionResponse"/>
+
+<xs:element name="eliminarEvaluacion" type="tns:eliminarEvaluacion"/>
+
+<xs:element name="eliminarEvaluacionResponse" type="tns:eliminarEvaluacionResponse"/>
+
+<xs:element name="eliminarFactor" type="tns:eliminarFactor"/>
+
+<xs:element name="eliminarFactorResponse" type="tns:eliminarFactorResponse"/>
+
+<xs:element name="eliminarPeriodo" type="tns:eliminarPeriodo"/>
+
+<xs:element name="eliminarPeriodoResponse" type="tns:eliminarPeriodoResponse"/>
+
+<xs:element name="eliminarPlanteamiento" type="tns:eliminarPlanteamiento"/>
+
+<xs:element name="eliminarPlanteamientoResponse" type="tns:eliminarPlanteamientoResponse"/>
+
+<xs:element name="eliminarPresentacion" type="tns:eliminarPresentacion"/>
+
+<xs:element name="eliminarPresentacionResponse" type="tns:eliminarPresentacionResponse"/>
+
+<xs:element name="eliminarUsuario" type="tns:eliminarUsuario"/>
+
+<xs:element name="eliminarUsuarioResponse" type="tns:eliminarUsuarioResponse"/>
+
+<xs:element name="eliminarformatoEvaluacion" type="tns:eliminarformatoEvaluacion"/>
+
+<xs:element name="eliminarformatoEvaluacionResponse" type="tns:eliminarformatoEvaluacionResponse"/>
+
+<xs:element name="eliminarformatofactor" type="tns:eliminarformatofactor"/>
+
+<xs:element name="eliminarformatofactorResponse" type="tns:eliminarformatofactorResponse"/>
+
+<xs:element name="empleado" type="tns:empleado"/>
+
+<xs:element name="empleadosEliminados" type="tns:empleadosEliminados"/>
+
+<xs:element name="empleadosEliminadosResponse" type="tns:empleadosEliminadosResponse"/>
+
+<xs:element name="evaluacion" type="tns:evaluacion"/>
+
+<xs:element name="evaluacionEmpleado" type="tns:evaluacionEmpleado"/>
+
+<xs:element name="factor" type="tns:factor"/>
+
+<xs:element name="formatoEvaluacion" type="tns:formatoEvaluacion"/>
+
+<xs:element name="formatoEvaluacionFactor" type="tns:formatoEvaluacionFactor"/>
+
+<xs:element name="getEmpleadosEvaluacion" type="tns:getEmpleadosEvaluacion"/>
+
+<xs:element name="getEmpleadosEvaluacionResponse" type="tns:getEmpleadosEvaluacionResponse"/>
+
+<xs:element name="getEmpleadosEvaluaciong" type="tns:getEmpleadosEvaluaciong"/>
+
+<xs:element name="getEmpleadosEvaluaciongResponse" type="tns:getEmpleadosEvaluaciongResponse"/>
+
+<xs:element name="getEvaluacionesAbiertas" type="tns:getEvaluacionesAbiertas"/>
+
+<xs:element name="getEvaluacionesAbiertasResponse" type="tns:getEvaluacionesAbiertasResponse"/>
+
+<xs:element name="getEvaluacionesSuper" type="tns:getEvaluacionesSuper"/>
+
+<xs:element name="getEvaluacionesSuperResponse" type="tns:getEvaluacionesSuperResponse"/>
+
+<xs:element name="getFormatoEvaluacion" type="tns:getFormatoEvaluacion"/>
+
+<xs:element name="getFormatoEvaluacionResponse" type="tns:getFormatoEvaluacionResponse"/>
+
+<xs:element name="isGerente" type="tns:isGerente"/>
+
+<xs:element name="isGerenteResponse" type="tns:isGerenteResponse"/>
+
+<xs:element name="isRecursos" type="tns:isRecursos"/>
+
+<xs:element name="isRecursosResponse" type="tns:isRecursosResponse"/>
+
+<xs:element name="isSeleccionado" type="tns:isSeleccionado"/>
+
+<xs:element name="isSeleccionadoResponse" type="tns:isSeleccionadoResponse"/>
+
+<xs:element name="isSupervisor" type="tns:isSupervisor"/>
+
+<xs:element name="isSupervisorResponse" type="tns:isSupervisorResponse"/>
+
+<xs:element name="login" type="tns:login"/>
+
+<xs:element name="loginDatos" type="tns:loginDatos"/>
+
+<xs:element name="loginDatosResponse" type="tns:loginDatosResponse"/>
+
+<xs:element name="loginResponse" type="tns:loginResponse"/>
+
+<xs:element name="pEAEmpleados" type="tns:pEAEmpleados"/>
+
+<xs:element name="pEAEmpleadosP" type="tns:pEAEmpleadosP"/>
+
+<xs:element name="pEAEmpleadosPResponse" type="tns:pEAEmpleadosPResponse"/>
+
+<xs:element name="pEAEmpleadosResponse" type="tns:pEAEmpleadosResponse"/>
+
+<xs:element name="pEPE" type="tns:pEPE"/>
+
+<xs:element name="pEPEResponse" type="tns:pEPEResponse"/>
+
+<xs:element name="periodo" type="tns:periodo"/>
+
+<xs:element name="planteamiento" type="tns:planteamiento"/>
+
+<xs:element name="planteamientosS" type="tns:planteamientosS"/>
+
+<xs:element name="planteamientosSResponse" type="tns:planteamientosSResponse"/>
+
+<xs:element name="presentacionFactor" type="tns:presentacionFactor"/>
+
+<xs:element name="procesarCanje" type="tns:procesarCanje"/>
+
+<xs:element name="procesarCanjeResponse" type="tns:procesarCanjeResponse"/>
+
+<xs:element name="puntajeEmpleado" type="tns:puntajeEmpleado"/>
+
+<xs:element name="puntajeEmpleadoResponse" type="tns:puntajeEmpleadoResponse"/>
+
+<xs:element name="puntosEvaluacionAcumulados" type="tns:puntosEvaluacionAcumulados"/>
+
+<xs:element name="puntosEvaluacionAcumuladosResponse" type="tns:puntosEvaluacionAcumuladosResponse"/>
+
+<xs:element name="puntosEvaluacionCantidad" type="tns:puntosEvaluacionCantidad"/>
+
+<xs:element name="puntosEvaluacionCantidadResponse" type="tns:puntosEvaluacionCantidadResponse"/>
+
+<xs:element name="puntosEvaluacionPromedios" type="tns:puntosEvaluacionPromedios"/>
+
+<xs:element name="puntosEvaluacionPromediosResponse" type="tns:puntosEvaluacionPromediosResponse"/>
+
+<xs:element name="registrarEvaluacion" type="tns:registrarEvaluacion"/>
+
+<xs:element name="registrarEvaluacionReposo" type="tns:registrarEvaluacionReposo"/>
+
+<xs:element name="registrarEvaluacionReposoResponse" type="tns:registrarEvaluacionReposoResponse"/>
+
+<xs:element name="registrarEvaluacionResponse" type="tns:registrarEvaluacionResponse"/>
+
+<xs:element name="registrarEvaluacionVacaciones" type="tns:registrarEvaluacionVacaciones"/>
+
+<xs:element name="registrarEvaluacionVacacionesResponse" type="tns:registrarEvaluacionVacacionesResponse"/>
+
+<xs:element name="reingresarEmpleado" type="tns:reingresarEmpleado"/>
+
+<xs:element name="reingresarEmpleadoResponse" type="tns:reingresarEmpleadoResponse"/>
+
+<xs:element name="reporteEmpleadosno" type="tns:reporteEmpleadosno"/>
+
+<xs:element name="reporteEmpleadosnoGerentes" type="tns:reporteEmpleadosnoGerentes"/>
+
+<xs:element name="reporteEmpleadosnoGerentesResponse" type="tns:reporteEmpleadosnoGerentesResponse"/>
+
+<xs:element name="reporteEmpleadosnoResponse" type="tns:reporteEmpleadosnoResponse"/>
+
+<xs:element name="reporteHistoricoEmpleados" type="tns:reporteHistoricoEmpleados"/>
+
+<xs:element name="reporteHistoricoEmpleadosResponse" type="tns:reporteHistoricoEmpleadosResponse"/>
+
+<xs:element name="reporteInformacionEvaluacion" type="tns:reporteInformacionEvaluacion"/>
+
+<xs:element name="reporteInformacionEvaluacionResponse" type="tns:reporteInformacionEvaluacionResponse"/>
+
+<xs:element name="retornaCargos" type="tns:retornaCargos"/>
+
+<xs:element name="retornaCargosResponse" type="tns:retornaCargosResponse"/>
+
+<xs:element name="retornaCorte" type="tns:retornaCorte"/>
+
+<xs:element name="retornaCorteResponse" type="tns:retornaCorteResponse"/>
+
+<xs:element name="retornaCorteSeleccionado" type="tns:retornaCorteSeleccionado"/>
+
+<xs:element name="retornaCorteSeleccionadoResponse" type="tns:retornaCorteSeleccionadoResponse"/>
+
+<xs:element name="retornaDependencias" type="tns:retornaDependencias"/>
+
+<xs:element name="retornaDependenciasResponse" type="tns:retornaDependenciasResponse"/>
+
+<xs:element name="retornaEmpleado" type="tns:retornaEmpleado"/>
+
+<xs:element name="retornaEmpleadoResponse" type="tns:retornaEmpleadoResponse"/>
+
+<xs:element name="retornaEmpleadosGrupodependencias" type="tns:retornaEmpleadosGrupodependencias"/>
+
+<xs:element name="retornaEmpleadosGrupodependenciasResponse" type="tns:retornaEmpleadosGrupodependenciasResponse"/>
+
+<xs:element name="retornaEmpleadosSeleccionados" type="tns:retornaEmpleadosSeleccionados"/>
+
+<xs:element name="retornaEmpleadosSeleccionadosResponse" type="tns:retornaEmpleadosSeleccionadosResponse"/>
+
+<xs:element name="retornaEmpleadosd" type="tns:retornaEmpleadosd"/>
+
+<xs:element name="retornaEmpleadosdResponse" type="tns:retornaEmpleadosdResponse"/>
+
+<xs:element name="retornaEvaluaciones" type="tns:retornaEvaluaciones"/>
+
+<xs:element name="retornaEvaluacionesEmpleado" type="tns:retornaEvaluacionesEmpleado"/>
+
+<xs:element name="retornaEvaluacionesEmpleadoResponse" type="tns:retornaEvaluacionesEmpleadoResponse"/>
+
+<xs:element name="retornaEvaluacionesResponse" type="tns:retornaEvaluacionesResponse"/>
+
+<xs:element name="retornaFactores" type="tns:retornaFactores"/>
+
+<xs:element name="retornaFactoresResponse" type="tns:retornaFactoresResponse"/>
+
+<xs:element name="retornaFormatos" type="tns:retornaFormatos"/>
+
+<xs:element name="retornaFormatosResponse" type="tns:retornaFormatosResponse"/>
+
+<xs:element name="retornaPeriodos" type="tns:retornaPeriodos"/>
+
+<xs:element name="retornaPeriodosResponse" type="tns:retornaPeriodosResponse"/>
+
+<xs:element name="retornaPlanteamientos" type="tns:retornaPlanteamientos"/>
+
+<xs:element name="retornaPlanteamientosResponse" type="tns:retornaPlanteamientosResponse"/>
+
+<xs:element name="retornaPresentaciones" type="tns:retornaPresentaciones"/>
+
+<xs:element name="retornaPresentacionesResponse" type="tns:retornaPresentacionesResponse"/>
+
+<xs:element name="retornaPresentacionesformatos" type="tns:retornaPresentacionesformatos"/>
+
+<xs:element name="retornaPresentacionesformatosResponse" type="tns:retornaPresentacionesformatosResponse"/>
+
+<xs:element name="retornaSupervisor" type="tns:retornaSupervisor"/>
+
+<xs:element name="retornaSupervisorResponse" type="tns:retornaSupervisorResponse"/>
+
+<xs:element name="retornaTipoEvaluacion" type="tns:retornaTipoEvaluacion"/>
+
+<xs:element name="retornaTipoEvaluacionResponse" type="tns:retornaTipoEvaluacionResponse"/>
+
+<xs:element name="retornaTiposEvaluacion" type="tns:retornaTiposEvaluacion"/>
+
+<xs:element name="retornaTiposEvaluacionResponse" type="tns:retornaTiposEvaluacionResponse"/>
+
+<xs:element name="retornaformatofactores" type="tns:retornaformatofactores"/>
+
+<xs:element name="retornaformatofactoresResponse" type="tns:retornaformatofactoresResponse"/>
+
+<xs:element name="retornatodosCanjes" type="tns:retornatodosCanjes"/>
+
+<xs:element name="retornatodosCanjesResponse" type="tns:retornatodosCanjesResponse"/>
+
+<xs:element name="retornaultimoCanje" type="tns:retornaultimoCanje"/>
+
+<xs:element name="retornaultimoCanjeResponse" type="tns:retornaultimoCanjeResponse"/>
+
+<xs:element name="seleccionado" type="tns:seleccionado"/>
+
+<xs:element name="seleccionarEmpleados" type="tns:seleccionarEmpleados"/>
+
+<xs:element name="seleccionarEmpleadosResponse" type="tns:seleccionarEmpleadosResponse"/>
+
+<xs:element name="tipoEvaluacion" type="tns:tipoEvaluacion"/>
+
+<xs:element name="usuario" type="tns:usuario"/>
+
+<xs:complexType name="comprobarCorreo">
+<xs:sequence>
+<xs:element name="correox" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="comprobarCorreoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaTiposEvaluacion">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaTiposEvaluacionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tipoEvaluacion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tipoEvaluacion">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idMetodo" type="xs:integer" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reporteEmpleadosnoGerentes">
+<xs:sequence>
+<xs:element name="identificadorEvaluacion" type="xs:string" minOccurs="0"/>
+<xs:element name="identificadorGerencia" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reporteEmpleadosnoGerentesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoArray" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empleado">
+<xs:sequence>
+<xs:element name="apellidos" type="xs:string" minOccurs="0"/>
+<xs:element name="codigo" type="xs:string" minOccurs="0"/>
+<xs:element name="correo" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaIngreso" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaNacimiento" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idCargo" type="tns:cargo" minOccurs="0"/>
+<xs:element name="idDependencia" type="tns:dependencia" minOccurs="0"/>
+<xs:element name="idUsuario" type="tns:usuario" minOccurs="0"/>
+<xs:element name="nombres" type="xs:string" minOccurs="0"/>
+<xs:element name="nroIdentificacion" type="xs:integer" minOccurs="0"/>
+<xs:element name="observation" type="xs:string" minOccurs="0"/>
+<xs:element name="tipoIdentificacion" type="xs:unsignedShort"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cargo">
+<xs:sequence>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dependencia">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idDependenciaPadre" type="tns:dependencia" minOccurs="0"/>
+<xs:element name="nivel" type="xs:integer" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="usuario">
+<xs:sequence>
+<xs:element name="clave" type="xs:string" minOccurs="0"/>
+<xs:element name="correo" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="identificador" type="xs:string" minOccurs="0"/>
+<xs:element name="nroIdentificacion" type="xs:integer" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RetornaDependenciasNivel">
+<xs:sequence>
+<xs:element name="nivelx" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RetornaDependenciasNivelResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dependencia" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaFormatos">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaFormatosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:formatoEvaluacion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="formatoEvaluacion">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="escala" type="xs:integer" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="datosEvaluaciones">
+<xs:sequence>
+<xs:element name="periodox" type="tns:periodo" minOccurs="0"/>
+<xs:element name="minimox" type="xs:decimal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="periodo">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaFinEvaluacion" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaInicioEvaluacion" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="datosEvaluacionesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarFactor">
+<xs:sequence>
+<xs:element name="factorx" type="tns:factor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="factor">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarFactorResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornatodosCanjes">
+<xs:sequence>
+<xs:element name="eseleccionado" type="tns:seleccionado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="seleccionado">
+<xs:sequence>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idCorte" type="tns:corte" minOccurs="0"/>
+<xs:element name="idEmpleado" type="tns:empleado" minOccurs="0"/>
+<xs:element name="promedioPuntos" type="xs:decimal" minOccurs="0"/>
+<xs:element name="puntosAcumulados" type="xs:integer" minOccurs="0"/>
+<xs:element name="puntosDisponibles" type="xs:integer" minOccurs="0"/>
+<xs:element name="saldoFinCorte" type="xs:integer" minOccurs="0"/>
+<xs:element name="saldoInicialCorte" type="xs:integer" minOccurs="0"/>
+<xs:element name="totalCanjesCorte" type="xs:integer" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="corte">
+<xs:sequence>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idPeriodo" type="tns:periodo" minOccurs="0"/>
+<xs:element name="minimoPromedioPuntos" type="xs:decimal" minOccurs="0"/>
+<xs:element name="saldoCorte" type="xs:decimal" minOccurs="0"/>
+<xs:element name="saldoIngreso" type="xs:decimal" minOccurs="0"/>
+<xs:element name="saldoInicial" type="xs:decimal" minOccurs="0"/>
+<xs:element name="tasaCambio" type="xs:decimal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornatodosCanjesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:canje" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="canje">
+<xs:sequence>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idComercio" type="xs:integer" minOccurs="0"/>
+<xs:element name="idSeleccionado" type="tns:seleccionado" minOccurs="0"/>
+<xs:element name="montoTasa" type="xs:decimal" minOccurs="0"/>
+<xs:element name="puntos" type="xs:integer" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="corteMaximo">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="corteMaximoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:corte" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isRecursos">
+<xs:sequence>
+<xs:element name="mailempleado" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isRecursosResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarPresentacion">
+<xs:sequence>
+<xs:element name="presentacion" type="tns:presentacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="presentacionFactor">
+<xs:sequence>
+<xs:element name="descripcionPresentacion" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idFactor" type="tns:factor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarPresentacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaCorte">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaCorteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:corte" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="login">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loginResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registrarEvaluacionVacaciones">
+<xs:sequence>
+<xs:element name="resultadox" type="tns:resultadoEvaluacionTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="resultadoEvaluacionTO">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+<xs:element name="evaluacionx" type="tns:evaluacion" minOccurs="0"/>
+<xs:element name="observacion" type="xs:string" minOccurs="0"/>
+<xs:element name="planteamientos" type="tns:planteamiento" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="supervisor" type="tns:empleado" minOccurs="0"/>
+<xs:element name="tipoEvaluacionx" type="tns:tipoEvaluacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="evaluacion">
+<xs:sequence>
+<xs:element name="fechaFin" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaInicio" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idCreador" type="tns:usuario" minOccurs="0"/>
+<xs:element name="idDependencia" type="tns:dependencia" minOccurs="0"/>
+<xs:element name="idFormatoEvaluacion" type="tns:formatoEvaluacion" minOccurs="0"/>
+<xs:element name="nivelRevision" type="xs:integer" minOccurs="0"/>
+<xs:element name="nombreEvaluacion" type="xs:string" minOccurs="0"/>
+<xs:element name="peso" type="xs:integer" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="planteamiento">
+<xs:sequence>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idPresentacionFactor" type="tns:presentacionFactor" minOccurs="0"/>
+<xs:element name="pesoPlanteamiento" type="xs:integer" minOccurs="0"/>
+<xs:element name="planteamiento" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registrarEvaluacionVacacionesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarformatoEvaluacion">
+<xs:sequence>
+<xs:element name="FormatoEvaluacionx" type="tns:formatoEvaluacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarformatoEvaluacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="agregarEmpleado">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarEmpleadoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="planteamientosS">
+<xs:sequence>
+<xs:element name="Evaluacionx" type="tns:evaluacion" minOccurs="0"/>
+<xs:element name="Empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="planteamientosSResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:stringArray" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isSupervisor">
+<xs:sequence>
+<xs:element name="idEmpleado" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isSupervisorResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarCanje">
+<xs:sequence>
+<xs:element name="Canjex" type="tns:canje" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarCanjeResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="crearPeriodo">
+<xs:sequence>
+<xs:element name="periodox" type="tns:periodo" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearPeriodoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaEmpleadosSeleccionados">
+<xs:sequence>
+<xs:element name="cortex" type="xs:string" minOccurs="0"/>
+<xs:element name="filtronx" type="xs:string" minOccurs="0"/>
+<xs:element name="filtroanx" type="xs:string" minOccurs="0"/>
+<xs:element name="filtrocx" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaEmpleadosSeleccionadosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:seleccionado" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarPlanteamiento">
+<xs:sequence>
+<xs:element ref="tns:planteamiento" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarPlanteamientoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="reporteHistoricoEmpleados">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="reporteHistoricoEmpleadosResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEmpleadosEvaluacion">
+<xs:sequence>
+<xs:element name="idEmpleadox" type="xs:string" minOccurs="0"/>
+<xs:element name="idEvaluacion" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEmpleadosEvaluacionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empleadoTO">
+<xs:complexContent>
+<xs:extension base="tns:empleado">
+<xs:sequence>
+<xs:element name="condicion" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="eliminaEvaluacionEmpleado">
+<xs:sequence>
+<xs:element name="evaluacionx" type="tns:evaluacionEmpleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="evaluacionEmpleado">
+<xs:sequence>
+<xs:element name="cerrada" type="xs:integer" minOccurs="0"/>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idEmpleado" type="tns:empleado" minOccurs="0"/>
+<xs:element name="idEvaluacion" type="tns:evaluacion" minOccurs="0"/>
+<xs:element name="idEvaluador" type="tns:empleado" minOccurs="0"/>
+<xs:element name="idTipoEvaluacion" type="tns:tipoEvaluacion" minOccurs="0"/>
+<xs:element name="nombreCargo" type="xs:string" minOccurs="0"/>
+<xs:element name="nombreDependencia" type="xs:string" minOccurs="0"/>
+<xs:element name="puntos" type="xs:integer" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminaEvaluacionEmpleadoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaPeriodos">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaPeriodosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:periodo" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearPlanteamiento">
+<xs:sequence>
+<xs:element name="planteamientox" type="tns:planteamiento" minOccurs="0"/>
+<xs:element name="presfactor" type="tns:presentacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearPlanteamientoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getFormatoEvaluacion">
+<xs:sequence>
+<xs:element name="idEvaluacionx" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getFormatoEvaluacionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:planteamiento" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaPresentaciones">
+<xs:sequence>
+<xs:element name="factorx" type="tns:factor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaPresentacionesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:presentacionFactor" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cambiarDependencia">
+<xs:sequence>
+<xs:element name="dependenciax" type="tns:dependencia" minOccurs="0"/>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cambiarDependenciaResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoRevision">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoRevisionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaDependencias">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaDependenciasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dependencia" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearformatoevalplanteamiento">
+<xs:sequence>
+<xs:element name="formato" type="tns:formatoEvaluacion" minOccurs="0"/>
+<xs:element name="presentacion" type="tns:presentacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearformatoevalplanteamientoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="editarPlanteamiento">
+<xs:sequence>
+<xs:element name="planteamientox" type="tns:planteamiento" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarPlanteamientoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="puntosEvaluacionCantidad">
+<xs:sequence>
+<xs:element name="nivelx" type="xs:string" minOccurs="0"/>
+<xs:element name="Evaluacionx" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Dependenciax" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="puntosEvaluacionCantidadResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarUsuario">
+<xs:sequence>
+<xs:element name="Identificacion" type="xs:integer" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarUsuarioResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaultimoCanje">
+<xs:sequence>
+<xs:element name="eseleccionado" type="tns:seleccionado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaultimoCanjeResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:canje" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reporteInformacionEvaluacion">
+<xs:sequence>
+<xs:element name="identificadorEvaluacion" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reporteInformacionEvaluacionResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarPeriodo">
+<xs:sequence>
+<xs:element name="periodox" type="tns:periodo" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarPeriodoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="deduccionesEmpleado">
+<xs:sequence>
+<xs:element name="idEmpleadox" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deduccionesEmpleadoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaCorteSeleccionado">
+<xs:sequence>
+<xs:element name="eseleccionado" type="tns:seleccionado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaCorteSeleccionadoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:canje" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="puntajeEmpleado">
+<xs:sequence>
+<xs:element name="idEmpleadox" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="puntajeEmpleadoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleado">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="EvaluacionFecha">
+<xs:sequence>
+<xs:element name="fix" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="ffx" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EvaluacionFechaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:evaluacion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ParseException">
+<xs:sequence>
+<xs:element name="errorOffset" type="xs:int"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarCargo">
+<xs:sequence>
+<xs:element name="cargox" type="tns:cargo" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarCargoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizarSeleccionado">
+<xs:sequence>
+<xs:element name="eseleccionado" type="tns:seleccionado" minOccurs="0"/>
+<xs:element name="puntosx" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizarSeleccionadoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaFactores">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaFactoresResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:factor" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaEmpleado">
+<xs:sequence>
+<xs:element name="mailempleado" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaEmpleadoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="puntosEvaluacionAcumulados">
+<xs:sequence>
+<xs:element name="nivelx" type="xs:string" minOccurs="0"/>
+<xs:element name="Evaluacionx" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Dependenciax" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="puntosEvaluacionAcumuladosResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarEvaluacion">
+<xs:sequence>
+<xs:element name="evaluacionx" type="tns:evaluacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarEvaluacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="registrarEvaluacion">
+<xs:sequence>
+<xs:element name="resultadox" type="tns:resultadoEvaluacionTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registrarEvaluacionResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reingresarEmpleado">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reingresarEmpleadoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eliminarPresentacion">
+<xs:sequence>
+<xs:element name="presentacion" type="tns:presentacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarPresentacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getEmpleadosEvaluaciong">
+<xs:sequence>
+<xs:element name="idEmpleadox" type="xs:string" minOccurs="0"/>
+<xs:element name="idEvaluacion" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEmpleadosEvaluaciongResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarUsuario">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarDependencia">
+<xs:sequence>
+<xs:element name="dependenciax" type="tns:dependencia" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarDependenciaResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaPresentacionesformatos">
+<xs:sequence>
+<xs:element name="formato" type="xs:decimal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaPresentacionesformatosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:presentacionFactor" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaEvaluaciones">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaEvaluacionesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:evaluacion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaformatofactores">
+<xs:sequence>
+<xs:element name="formato" type="tns:formatoEvaluacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaformatofactoresResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:formatoEvaluacionFactor" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="formatoEvaluacionFactor">
+<xs:sequence>
+<xs:element name="id" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idFormatoEvaluacion" type="tns:formatoEvaluacion" minOccurs="0"/>
+<xs:element name="idPresentacionFactor" type="tns:presentacionFactor" minOccurs="0"/>
+<xs:element name="pesoFactorEscala" type="xs:integer" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarDependencia">
+<xs:sequence>
+<xs:element name="dependenciax" type="tns:dependencia" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarDependenciaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaEvaluacionesEmpleado">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaEvaluacionesEmpleadoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:evaluacionEmpleado" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarPeriodo">
+<xs:sequence>
+<xs:element name="periodox" type="tns:periodo" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarPeriodoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="crearCorte">
+<xs:sequence>
+<xs:element name="periodox" type="tns:periodo" minOccurs="0"/>
+<xs:element name="cortex" type="tns:corte" minOccurs="0"/>
+<xs:element name="montox" type="xs:decimal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearCorteResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="registrarEvaluacionReposo">
+<xs:sequence>
+<xs:element name="resultadox" type="tns:resultadoEvaluacionTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registrarEvaluacionReposoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RetornaEvaluacionesReporte">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="RetornaEvaluacionesReporteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:evaluacion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reporteEmpleadosno">
+<xs:sequence>
+<xs:element name="identificadorEvaluacion" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reporteEmpleadosnoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoArray" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarformatofactor">
+<xs:sequence>
+<xs:element name="formatoevaluacionfactorx" type="tns:formatoEvaluacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarformatofactorResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eliminarformatofactor">
+<xs:sequence>
+<xs:element name="formatoevaluacionfactorx" type="tns:formatoEvaluacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarformatofactorResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="consultarDependencia">
+<xs:sequence>
+<xs:element name="idEmpleadox" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultarDependenciaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pEAEmpleados">
+<xs:sequence>
+<xs:element name="nivelx" type="xs:string" minOccurs="0"/>
+<xs:element name="Evaluacionx" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Empleadosx" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pEAEmpleadosResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizarCorte">
+<xs:sequence>
+<xs:element name="eseleccionado" type="tns:seleccionado" minOccurs="0"/>
+<xs:element name="puntosx" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizarCorteResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="pEAEmpleadosP">
+<xs:sequence>
+<xs:element name="nivelx" type="xs:string" minOccurs="0"/>
+<xs:element name="Evaluacionx" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Empleadosx" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pEAEmpleadosPResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoEvaluacion">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoEvaluacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="editarDependencia">
+<xs:sequence>
+<xs:element name="dependenciax" type="tns:dependencia" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarDependenciaResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="actualizarPlanteamientoEval">
+<xs:sequence>
+<xs:element name="presfactor" type="tns:presentacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizarPlanteamientoEvalResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="editarformatoEvaluacion">
+<xs:sequence>
+<xs:element name="FormatoEvaluacionx" type="tns:formatoEvaluacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarformatoEvaluacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eliminarEvaluacion">
+<xs:sequence>
+<xs:element name="evaluacionx" type="tns:evaluacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEvaluacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="procesarCanje">
+<xs:sequence>
+<xs:element name="eseleccionado" type="tns:seleccionado" minOccurs="0"/>
+<xs:element name="puntosx" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="procesarCanjeResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaTipoEvaluacion">
+<xs:sequence>
+<xs:element name="nombretipox" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaTipoEvaluacionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tipoEvaluacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="puntosEvaluacionPromedios">
+<xs:sequence>
+<xs:element name="nivelx" type="xs:string" minOccurs="0"/>
+<xs:element name="Evaluacionx" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Dependenciax" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="puntosEvaluacionPromediosResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarEmpleado">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+<xs:element name="supervisor" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarEmpleadoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getEvaluacionesSuper">
+<xs:sequence>
+<xs:element name="idEmpleadox" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEvaluacionesSuperResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:evaluacion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pEPE">
+<xs:sequence>
+<xs:element name="nivelx" type="xs:string" minOccurs="0"/>
+<xs:element name="Evaluacionx" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Empleadosx" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pEPEResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarCargo">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarCargoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaSupervisor">
+<xs:sequence>
+<xs:element name="idEmpleado" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaSupervisorResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearformatofactor">
+<xs:sequence>
+<xs:element name="formato" type="tns:formatoEvaluacion" minOccurs="0"/>
+<xs:element name="presentacion" type="tns:presentacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearformatofactorResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="loginDatos">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loginDatosResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creaestadoSupervisor">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creaestadoSupervisorResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="empleadosEliminados">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="empleadosEliminadosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleado" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaPlanteamientos">
+<xs:sequence>
+<xs:element name="presfactor" type="tns:presentacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaPlanteamientosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:planteamiento" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="seleccionarEmpleados">
+<xs:sequence>
+<xs:element name="cortex" type="tns:corte" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="seleccionarEmpleadosResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="isGerente">
+<xs:sequence>
+<xs:element name="mailgerente" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isGerenteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dependencia" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarCorte">
+<xs:sequence>
+<xs:element name="cortex" type="tns:corte" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarCorteResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getEvaluacionesAbiertas">
+<xs:sequence>
+<xs:element name="idEmpleadox" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEvaluacionesAbiertasResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaEmpleadosd">
+<xs:sequence>
+<xs:element name="idDependencia" type="xs:string" minOccurs="0"/>
+<xs:element name="filtronx" type="xs:string" minOccurs="0"/>
+<xs:element name="filtroanx" type="xs:string" minOccurs="0"/>
+<xs:element name="filtrocx" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaEmpleadosdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleado" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearEvaluacion">
+<xs:sequence>
+<xs:element name="evaluacionx" type="tns:evaluacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearEvaluacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="actualizaSupervisor">
+<xs:sequence>
+<xs:element name="idEmpleado" type="tns:empleado" minOccurs="0"/>
+<xs:element name="supervisor" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizaSupervisorResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="agregarEstadoEmpleado">
+<xs:sequence>
+<xs:element name="empleadox" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarEstadoEmpleadoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaEmpleadosGrupodependencias">
+<xs:sequence>
+<xs:element name="nivelx" type="xs:string" minOccurs="0"/>
+<xs:element name="Dependenciax" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaEmpleadosGrupodependenciasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleado" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearformatoEvaluacion">
+<xs:sequence>
+<xs:element name="FormatoEvaluacionx" type="tns:formatoEvaluacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearformatoEvaluacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retornaCargos">
+<xs:sequence>
+<xs:element name="filtrox" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retornaCargosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cargo" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarCargo">
+<xs:sequence>
+<xs:element name="cargox" type="tns:cargo" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarCargoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="crearFactor">
+<xs:sequence>
+<xs:element name="factorx" type="tns:factor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearFactorResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eliminarFactor">
+<xs:sequence>
+<xs:element name="factorx" type="tns:factor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarFactorResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="isSeleccionado">
+<xs:sequence>
+<xs:element name="idEmpleadox" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isSeleccionadoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:seleccionado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearPresentacion">
+<xs:sequence>
+<xs:element name="factorx" type="tns:factor" minOccurs="0"/>
+<xs:element name="presentacion" type="tns:presentacionFactor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearPresentacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="empleadoArray" final="#all">
+<xs:sequence>
+<xs:element name="item" type="tns:empleado" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

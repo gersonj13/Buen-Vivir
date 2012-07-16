@@ -1,0 +1,106 @@
+a:link {color: #000000; text-decoration: none}
+a:visited {color: #000000; text-decoration: none}
+a:hover {color: #000000; background: #EAEAEA; text-decoration: none}
+a:active {color: #000000; text-decoration: none}
+
+BODY {
+  font: 15px "Arial", "Verdana", "sans-serif";
+  font-style: normal;
+/*  background: #FFFFFF no-repeat;*/
+
+  background-repeat: no-repeat;
+  background-position: left;
+  left: -10px;
+}
+
+#MenuCerrarSesion2 {
+    position:relative;
+    text-align: center;
+    top: 0%;
+    left:5%;
+    right: 5%;
+    width: 90%;
+    /*    min-height: 20px;*/
+    margin: 0;
+    cursor: pointer;
+}
+#MenuCerrarSesion2 h3 {
+    display: block;
+     font: bold 14px "sans-serif", "Verdana", "sans-serif";
+ 
+    line-height: 30px;
+    color: #3a6aad;
+    margin: 0;
+    padding: 2px 0 5px 7px;
+    background: url(../../images/img/Pestana21.png) no-repeat;
+  
+    border: 0;
+}
+#MenuCerrarSesion2 h3 a{
+    color: #3a6aad;
+    
+    text-decoration: none;
+}
+
+#MenuCerrarSesion2 h3.active {
+    color: #fff;
+    background: url(../../images/img/Pestana2.png) no-repeat;
+}
+
+#MCContenido2 {
+
+    position:relative;
+
+    height: 0px;
+    margin-left:10%;
+    width:550px;
+    background: #f5f5f5;
+    /*    border: 1px solid #bfbfbf;
+        padding: 8px;*/
+    /*    -moz-border-radius-bottomright:0px;  Firefox
+        -moz-border-radius-bottomleft:10px;  Firefox
+        -webkit-border-bottom-right-radius:0px;  Safari
+        -webkit-border-bottom-left-radius:10px;  Safari
+        -ms-border-radius: 1em;  Internet Explorer 8 */
+    /*    cursor:default;
+        z-index: 1000;*/
+
+}
+.Titulo{
+  font: bold 12px "sans-serif", "Verdana", "sans-serif";
+  color: #3a6aad;
+}
+
+.treeview ul{ /*CSS for Simple Tree Menu*/
+margin: 0;
+padding: 0;
+left: 10px;
+}
+
+.treeview li{ /*Style for LI elements in general (excludes an LI that contains sub lists)*/
+background:  url(img/list.png) left center;
+background-repeat: no-repeat;
+font: 12px "Arial", "Verdana", "sans-serif";
+list-style-type: none;
+padding-left: 17px;
+margin-bottom: 3px;
+}
+
+.treeview li.submenu{ /* Style for LI that contains sub lists (other ULs). */
+background:  url(img/closed.png) left top;
+background-repeat: no-repeat;
+font: 15px "Arial", "Verdana", "sans-serif";
+cursor: hand !important;
+cursor: pointer !important;
+left: -40px;
+}
+
+
+.treeview li.submenu ul{ /*Style for ULs that are children of LIs (submenu) */
+display: none; /*Hide them by default. Don't delete. */
+left: -10px;
+}
+
+.treeview .submenu ul li{ /*Style for LIs of ULs that are children of LIs (submenu) */
+cursor: default;
+}

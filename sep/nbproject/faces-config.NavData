@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Faces Configuration Only" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="Proyecto/organizacion/listaCargos.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="Proyecto/canje/canjePuntos.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="menup/principal.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="resources/plantillas/plantillaInicio.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="Proyecto/evaluacion/puntajes.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="template.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="Proyecto/presentacionesformatos/List.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="Proyecto/evaluacion/resultadoEvaluacion.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="Proyecto/canje/empleadosSeleccionados.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="Proyecto/organizacion/verEmpleadod.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="Proyecto/canje/comprobante.xhtml" x="400" y="1050" zoom="false"/>
+        <Node id="Proyecto/evaluacion/formatoEvaluacion.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="Proyecto/canje/corteCanje.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="Proyecto/canje/periodoCanje.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="Proyecto/organizacion/editarEmpleadosd.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="Proyecto/evaluacion/reposo.xhtml" x="900" y="600" zoom="false"/>
+        <Node id="Proyecto/evaluacion/topimage.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="Proyecto/canje/comprobanteI.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="Proyecto/presentaciones/List.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="Proyecto/organizacion/agregarEmpleadod.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="menup/sesionoff.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="Proyecto/inicio2.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="Proyecto/organizacion/listaEmpleadosd.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="factores/List.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="Proyecto/formatoEvaluacion/List.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="resources/plantillas/plantillaPrincipal.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="Proyecto/reportes/reporteEstadistico.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="login/index.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="Proyecto/evaluacion/evaluaciones.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="Proyecto/evaluacion/listaEvaluaciones.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="Proyecto/planteamientos/List.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="Proyecto/organizacion/empleadosEliminados.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="Proyecto/reportes/reporteEvaluacion.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="Proyecto/evaluacionesGerentes/evaluaciong.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="Proyecto/evaluacion/vacaciones.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="Proyecto/evaluacion/sesionoff.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="Proyecto/organizacion/listaDependencias.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="Proyecto/evaluacionesGerentes/resultadoEvaluaciong.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="Proyecto/organizacion/eliminarEmpleadod.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="Proyecto/Menu.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="Proyecto/reportes/reporteEvaluacionGerentes.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="Proyecto/evaluacionesGerentes/listaEmpleadosg.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="Proyecto/evaluacion/listaEmpleados.xhtml" x="1650" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Empleados Eliminados"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+            <h1><h:outputText value="EmpleadosEliminados"></h:outputText></h1>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+
+            <h:panelGroup id="pgformulario" >
+                <h:outputText value="${empleadoseliminadosController.iniciar()}"/>
+
+            </h:panelGroup>
+            <br/><br/>
+            <h:panelGroup id="pglista">
+                <h:form id="fmlista" prependId="false">
+                    <h:panelGroup id="pgsublista">
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            corregir_tabla();
+                            //]]>
+                        </script>
+                        <p:dataTable id="tlazy" var="item" value="#{empleadoseliminadosController.empleados}" paginator="true" rows="20"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     rowIndexVar="i" emptyMessage="No hay resultados"   >
+
+
+
+                            <p:column  style=" width: 40px; max-width: 40px;" styleClass="campo60"  headerText="Nombres"
+                                       footerText="Nombres" >
+
+
+                                <h:outputText value="#{item.nombres}" />
+
+                            </p:column>
+
+                            <p:column style="width: 130px;  max-width: 130px;  min-width: 130px;" styleClass="campo60"  headerText="Apellidos"
+                                      footerText="Apellidos" >
+
+                                <h:outputText value="#{item.apellidos}"/>
+
+                            </p:column>
+                            <p:column style="width: 50px;  max-width: 50px;  min-width: 50px;" styleClass="campo60"  headerText="Codigo"
+                                      footerText="Codigo" >
+
+                                <h:outputText value="#{item.codigo}"/>
+
+                            </p:column>
+                            <p:column style="width: 70px;  max-width: 70px;  min-width: 70px;" styleClass="campo60"  headerText="Cedula"
+                                      footerText="Cedula" >
+
+                                <h:outputText value="#{item.nroIdentificacion}"/>
+
+                            </p:column>
+
+
+
+
+                            <p:column  style="text-align:center; width: 25px; min-width: 25px;  max-width: 25px;" headerText="Reingresar"   footerText="Reingresar">
+                                <p:commandLink update="pglista" action="#{empleadoseliminadosController.habilitarEmpleado}">
+                                    <f:setPropertyActionListener value="#{item}"  target="#{empleadoseliminadosController.current}" />
+                                    <h:graphicImage  alt="Reingresar" title="Reingresar"  value="/faces/resources/images/iconos/check.png"/>
+                                </p:commandLink>
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:panelGroup>
+
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

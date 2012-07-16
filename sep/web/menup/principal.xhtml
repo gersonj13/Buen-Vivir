@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">${bundleP.PangeaNameTitle}</ui:insert></title>
+        <link rel="shortcut icon" href="../resources/pangea/favicon.ico"></link>
+        <!-- Importar los .Js  -->
+        <!-- Fin imports-->
+        <!-- Etiquetas para incrustar lo que necesite -->
+        <ui:insert name="scripts"><!--Aquí codigo .Js .Css .etc--></ui:insert>
+        <!-- Fin de zona declarativa -->
+
+    </h:head>
+    <c:if test="#{(sessionBean.logeado==true)}">
+        <frameset id="framep" rows="150,*"  border="1px"  framespacing="0"   >
+            <frame src="../resources/images/img/logo.png"  scrolling="no"  name="topFrame" style="alignment-adjust: central; alignment-baseline: central; background-position: center; text-align: center; "  id="TopFrame" noresize="true"/>
+            <frameset id="framep" cols="252,*"  border="1px"  framespacing="0" >
+                <frame src="../Proyecto/Menu.xhtml" name="leftFrame" id="leftFrame" noresize="true"/>
+                <frame src="#{sessionScope['Pagina']}" name="ppalFrame" id="ppalFrame" noresize="true"/>
+            </frameset>
+        </frameset>
+
+    </c:if>
+    <c:if test="#{(sessionBean.logeado==false)}">
+        <h:outputText value="#{sessionBean.off()}"/>
+
+    </c:if>
+
+</html>

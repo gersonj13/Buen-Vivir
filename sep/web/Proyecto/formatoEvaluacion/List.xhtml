@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Formatos de Evaluacion"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+            <h1><h:outputText value="Formatos de Evaluacion"></h:outputText></h1>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+
+            <h:panelGroup id="pgformulario" >
+                <h:outputText value="${formatosevaluacionController.iniciar()}"/>
+
+                <br />
+                <p:panel id="pnmaestro" header="Crear Formato Evaluacion" toggleable="true" closable="false"
+                         toggleSpeed="500" collapsed="true"  >
+                    <h3><h:outputText value="Crear Formato Evaluacion"></h:outputText></h3>
+                    <h:form id="fmeditar" prependId="false">
+                        <div class="tabla_estandar">
+                            <table style="width: 80%" class="tabla_estandar">
+                                <thead>
+                                    <th/><th/>
+                                </thead>
+
+                                <tr>
+                                    <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                            <h:outputLabel value="Nombre Formato" for="nombre" />
+                                        </div>
+                                    </td>
+                                    <td style="width:250px;"><div>
+                                            <h:inputText id="nombre" value="#{formatosevaluacionController.selected.nombre}" title="#{bundleP.CreateFactoresTitle_nombre}" styleClass="campo98" />
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                            <h:outputLabel value="Descripcion" for="descripcion" />
+                                        </div>
+                                    </td>
+                                    <td style="width:250px;"><div>
+                                            <h:inputText id="descripcion" value="#{formatosevaluacionController.selected.descripcion}" title="#{bundleP.CreateFactoresTitle_descripcion}" styleClass="campo98" />
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="col_titulo" style="width: 100%; min-width: 200px" >
+
+                                            <h:outputLabel value="Escala" for="escala" />
+                                        </div>
+                                    </td>
+                                    <td style="width:250px;"><div>
+                                            <p:keyboard keypadOnly="true"   value="#{formatosevaluacionController.selected.escala}"  layout="custom"  
+                                                        id="escala" layoutTemplate="123,456-clear,789-back, 0 " style="width:100%" title="Escala"/> 
+
+                                        </div>
+                                    </td>
+                                    <td><div style="width: 100%; min-width: 220px" >
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><div class="col_titulo_sin"></div></td>
+                                    <td><div class="col75">
+                                            <!-- Botones      -->                                            
+                                            <p:commandButton id="Guardar" update="@form growlmsj pgsublista"  value="#{bundleP.GuardarTitle}" actionListener="#{formatosevaluacionController.create}"  />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br />
+                        <br />
+                    </h:form>
+                </p:panel>
+
+            </h:panelGroup>
+            <br/><br/>
+            <h:panelGroup id="pglista">
+                <h:form id="fmlista" prependId="false">
+                    <h:panelGroup id="pgsublista">
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            corregir_tabla();
+                            //]]>
+                        </script>
+                        <p:dataTable id="tlazy" var="item" value="#{formatosevaluacionController.formatos}" paginator="true" rows="20"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     rowIndexVar="i" emptyMessage="No hay resultados"  rowEditListener="#{formatosevaluacionController.rowEditListener}" >
+
+
+
+                            <p:column  style=" width: 40px; max-width: 40px;" styleClass="campo60"  headerText="Nombre"
+                                       footerText="Nombre" >
+
+                                <p:cellEditor>  
+                                    <f:facet name="output">   
+                                        <h:outputText value="#{item.nombre}" />
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <h:inputText value="#{item.nombre}" style="width:100%"/>  
+                                    </f:facet>  
+                                </p:cellEditor> 
+                            </p:column>
+
+                            <p:column style="width: 50px;  max-width: 50px;  min-width: 50px;" styleClass="campo60"  headerText="Descripcion"
+                                      footerText="Descripcion" >
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.descripcion}"/>
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <h:inputText  value="#{item.descripcion}" style="width:100%"/>  
+                                    </f:facet>  
+                                </p:cellEditor> 
+                            </p:column>
+
+
+                            <p:column style="width: 10px;  max-width: 10px; text-align: center;  min-width: 10px;" styleClass="campo60"  headerText="Escala"
+                                      footerText="Escala" >
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.escala}"/>
+                                    </f:facet>
+                                    <f:facet name="input">  
+
+                                        <p:keyboard keypadOnly="true"   value="#{item.escala}"  layout="custom"  
+                                                    layoutTemplate="123,456-clear,789-back, 0 " style="width:100%"/>  
+                                    </f:facet>  
+                                </p:cellEditor> 
+                            </p:column>
+
+
+
+                            <p:column   style="text-align:center;  alignment-baseline: central; text-align-last: center;  alignment-adjust: central; width: 1px; min-width: 1px; max-width: 1px;"  headerText="#{bundleP.EditarTitle}"   footerText="#{bundleP.EditarTitle}" >
+                                <p:rowEditor  >
+
+                                </p:rowEditor>
+                            </p:column>
+                            <p:column  style="text-align:center; width: 5px; min-width: 5px;  max-width: 5px;" headerText="#{bundleP.EliminarTitle}"   footerText="#{bundleP.EliminarTitle}">
+                                <p:commandLink update="elmD" oncomplete="confirmacion.show()">
+                                    <f:setPropertyActionListener value="#{item}"  target="#{formatosevaluacionController.current}" />
+                                    <h:graphicImage  alt="#{bundleP.EliminarTitle}" title="#{bundleP.EliminarTitle}"  value="/faces/resources/images/iconos/eliminar16.png"/>
+                                </p:commandLink>
+                            </p:column>
+                            <p:column  style="text-align:center; width: 10px; max-width: 10px;" headerText="Factores"   footerText="Factores">
+                                <p:commandLink action="#{formatosevaluacionController.prepareFactor}">
+                                    <f:setPropertyActionListener value="#{item}"  target="#{formatosevaluacionController.current}" />
+                                    <h:graphicImage  alt="Factores" title="Factores"  value="/faces/resources/images/iconos/pres.gif"/>
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <h:panelGroup id="elmD">
+                        <p:dialog id="cdconfirmacion" header="#{bundleP.CDCabeceraTitle}" widgetVar="confirmacion" >
+                            <h:outputText value="#{bundleP.CDMsjTitle} El Formato de Evaluacion?"></h:outputText>
+                            <br/>
+                            <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                                <p:commandButton value="#{bundleP.SiTitle}"  update="growlmsj pgsublista"  oncomplete="confirmacion.hide()" actionListener="#{formatosevaluacionController.eliminar}"  >
+
+                                </p:commandButton>
+                                <p:commandButton value="#{bundleP.NoTitle}" onclick="confirmacion.hide()" type="button" />
+                            </h:panelGrid>
+                        </p:dialog>
+                    </h:panelGroup>	
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

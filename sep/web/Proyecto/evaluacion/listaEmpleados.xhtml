@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundleP.ListFactoresTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+            <h1><h:outputText value="#{bundleP.ListEmpleadosTitle}"></h:outputText></h1>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+
+            <h:panelGroup id="pgformulario" >
+
+                <br />  
+                <h:outputText value="#{empleadoBean.iniciar()}" />
+
+            </h:panelGroup>
+
+            <h:panelGroup id="pglista">
+                <h:form id="fmlista" prependId="false">
+                    <h:panelGroup id="pgsublista">
+                        <p  class="boxy">
+                            &laquo;
+                            <strong style="text-align: left;">
+                                <h:commandLink action="#{empleadoBean.prepareEvaluaciones()}" value="Regresar a Lista evaluaciones" immediate="true"/>
+                            </strong>
+                        </p>
+
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            corregir_tabla();
+                            //]]>
+                        </script>
+                        <p:dataTable id="tlazy" var="item" value="#{empleadoBean.empleados}" paginator="true" rows="20"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     rowIndexVar="i" emptyMessage="No hay resultados"  >
+
+                            <p:column  style="width:  20px; text-align: center; #{empleadoBean.estilo(item.condicion)}" styleClass="campo60"  headerText="#{bundleP.ListEmpleadosNombre}"
+
+                                       footerText="#{bundleP.ListEmpleadosNombre}"    >
+
+                                <h:outputText value="#{item.nombres} #{item.apellidos}" style="font-size: 14px;"/>
+                            </p:column>
+
+                            <p:column  style="max-width: 15px; width: 45px; text-align: center; #{empleadoBean.estilo(item.condicion)}"   headerText="#{bundleP.ListEmpleadosCodigo}"
+                                       footerText="#{bundleP.ListEmpleadosCodigo}" >
+
+
+                                <h:outputText value="#{item.codigo}" style="width: 10px;" />
+
+
+                            </p:column>
+
+                            <p:column style="width: 20px;  text-align: center; #{empleadoBean.estilo(item.condicion)}" styleClass="campo60"  headerText="#{bundleP.ListEmpleadosCedula}"
+                                      footerText="#{bundleP.ListEmpleadosCedula}" >
+
+                                <h:outputText value="#{item.tipoIdentificacion}-#{item.nroIdentificacion}" style="font-size: 14px;"/>
+
+                            </p:column>
+                            <p:column style="width: 20px; text-align: center; #{empleadoBean.estilo(item.condicion)}" styleClass="campo60"  headerText="#{bundleP.ListEmpleadosCargo}"
+                                      footerText="#{bundleP.ListEmpleadosCargo}" >
+
+                                <h:outputText value="#{item.idCargo.nombre}" style="font-size: 14px;"/>
+
+                            </p:column>
+                            <p:column style="width: 20px; text-align: center; #{empleadoBean.estilo(item.condicion)}"   headerText="#{bundleP.ListEmpleadosFoto}"
+
+                                      footerText="#{bundleP.ListEmpleadosFoto}" >
+                                <h:graphicImage height="100" width="100" alt="/faces/resources/images/usuarios/#{item.nombres}" value="#{empleadoBean.comprobarImagen(item.codigo)}"/>
+
+                            </p:column>
+                            <p:column style="text-align: center; width: 40px; #{empleadoBean.estilo(item.condicion)}" headerText="#{bundleP.Evaluar}"   footerText="#{bundleP.Evaluar}" >
+                                <p:commandLink  update="elmD"  oncomplete="confirmacion.show()"  action="#{empleadoBean.prepareSeleccion()}" rendered="#{item.condicion eq 'pendiente'}" >
+                                    <f:setPropertyActionListener  target="#{empleadoBean.current}" value="#{item}" />
+                                    <h:graphicImage  alt="#{bundleP.Evaluar}" title="#{bundleP.Evaluar}"  value="/faces/resources/images/iconos/editar16.gif" />
+                                </p:commandLink>
+                                <p:commandLink  rendered="#{item.condicion eq 'vacaciones'}" >
+                                    <h:graphicImage  alt="#{bundleP.Evaluar}" title="#{bundleP.Evaluar}"  value="/faces/resources/images/iconos/vaca.png" />
+                                </p:commandLink>
+                                <p:commandLink  rendered="#{item.condicion eq 'reposo'}" >
+                                    <h:graphicImage  alt="#{bundleP.Evaluar}" title="#{bundleP.Evaluar}"  value="/faces/resources/images/iconos/reposo.png" />
+                                </p:commandLink>
+                            </p:column>
+
+
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <h:panelGroup id="elmD">
+                        <p:dialog id="cdconfirmacion" width="350" header="Seleccione el Tipo de Evaluacion" widgetVar="confirmacion" >
+
+                            <h:selectOneRadio value="#{empleadoBean.tiposel}"  layout="pageDirection" >
+                                <f:selectItems value="#{empleadoBean.tipostring}" />
+                            </h:selectOneRadio>
+
+
+                            <br/>
+                            <h:panelGrid id="display" columns="2" cellpadding="4">
+                                <p:commandButton id="tip" value="#{bundleP.AceptarTitle}"  update="@form growlmsj"  oncomplete="confirmacion.hide()" action="#{empleadoBean.prepareEvaluacion()}" />
+
+
+                                <p:commandButton value="#{bundleP.CancelarTitle}" onclick="confirmacion.hide()" type="button" />
+                            </h:panelGrid>
+                        </p:dialog>
+                    </h:panelGroup>	
+                </h:form>
+            </h:panelGroup>
+
+
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

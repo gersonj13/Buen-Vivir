@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundleP.ListFactoresTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+               
+                <script type="text/javascript">
+                    //<![CDATA[
+                    
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+
+            <h:panelGroup id="pgformulario" >
+
+                <br />                
+
+            </h:panelGroup>
+
+            <h:panelGroup id="pglista">
+                <h:outputText value="${formatoEvaluacionController.setearEmpleado()}"/>
+                <h:form id="fmlista" prependId="false">
+                    <f:view contentType="text/html">
+                        <p:growl id="growl" showDetail="true" />
+                    </f:view>
+                    <div id="tlazy2" class="ui-datatable ui-widget">
+
+                        <table style="border-spacing: 0px;  border-right: 1px solid; border-left: 1px solid; border-left-width: 1px; border-left-color: #EAEAEA; border-bottom:1px solid; " border="0.5" width="100%" >
+                            <tr class="ui-widget-header" >
+
+                                <th colspan="10" style="font-size: 12px;">Evaluacion de Rendimiento</th>
+                            </tr>
+                            <tbody class="ui-datatable-data">
+                                <tr >
+                                    <td >
+                                        <h:outputText id="triger"  value="Apellidos: " /><h:outputText value="#{formatoEvaluacionController.emp.apellidos}"/>
+
+                                    </td>
+                                    <td>
+                                        <h:outputText value="Nombres: "/><h:outputText value="#{formatoEvaluacionController.emp.nombres}"/>
+
+                                    </td>
+                                    <td>
+                                        <h:outputText value="Codigo: "/><h:outputText value="#{formatoEvaluacionController.emp.codigo}"/>
+
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td>
+                                        <h:outputText value="Cargo Actual: "/><h:outputText value="#{formatoEvaluacionController.emp.idCargo.nombre}"/>
+
+                                    </td>
+                                    <td>
+                                        <h:outputText value="Fecha de Ingreso: "/><h:outputText value="#{formatoEvaluacionController.emp.fechaIngreso.day}-#{formatoEvaluacionController.emp.fechaIngreso.month}-#{formatoEvaluacionController.emp.fechaIngreso.year}"/>
+
+                                    </td>
+
+                                </tr>
+                                <tr >
+                                    <td>
+                                        <h:outputText value="Gerencia/Sucursal: "/><h:outputText value="#{formatoEvaluacionController.emp.idDependencia.descripcion}"/>
+
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br/> 
+                    <h:inputHidden value="#{formatoEvaluacionController.lista}" id="listaF"/>
+
+                    <div id="tlazy" class="ui-datatable ui-widget">
+                        <table style="border-spacing: 0px; border-right: 1px solid; border-left: 1px solid; border-left-width: 1px; border-left-color: #EAEAEA; border-bottom:1px solid; " border="0.5" >
+                            <tr class="ui-widget-header" >
+
+                                <th colspan="10" style="font-size: 12px;">Descripcion</th>
+                            </tr>
+                            <tbody class="ui-datatable-data">
+                                <ui:repeat var="o" value="#{formatoEvaluacionController.factores}" varStatus="status">
+
+                                    <tr class="ui-state-default" ><td colspan="10" style="border-bottom: 1px solid; border-top: 1px solid; border-left-color:#000000; border-left-width: 1px; border-left-style: solid; border-right-style: none; border-right-width: 0px; border-color: #aaaaaa;"   >#{o.nombre} - Desc: #{o.descFactor}</td></tr>
+                                    <tr>
+
+
+                                        <input type="hidden" value="f_#{o.idFactor}" id="f_#{o.idFactor}" />
+
+                                        <ui:repeat var="p" value="#{o.listaPlan}" >
+
+
+                                            <td style="border-left: 1px solid;" >
+
+                                                <div id="#{p.id}x" name="#{p.id}x" onMouseOver="stm(' ','#{p.planteamiento}',Style[10])" onMouseOut="htm()" > #{p.planteamiento} </div>
+
+
+                                            </td>
+
+
+                                            <td>
+                                                <input type="radio" checked="true" id="#{o.idFactor}-#{p.id}"  name="group#{o.idFactor}" value="#{o.idFactor}-#{p.id}" onclick="javascript:asignar(#{o.idFactor},#{p.id})" style="{width:30px; height:30px;}"/>
+                                            </td>
+
+                                        </ui:repeat>
+                                        <td style="border-left: 1px solid;  "  >
+
+                                            <div ></div>
+
+
+                                        </td>
+
+
+                                        <td bgcolor="" style="background-color: #DFECF1;  border-color: cornflowerblue; border-width: thin;border-style: inset;  ">
+                                            <input  type="radio" checked="true" id="#{o.idFactor}-n"  name="group#{o.idFactor}" value="#{o.idFactor}-n" onclick="javascript:asignar(#{o.idFactor},n)" style="{ width:30px; height:30px;  }"/>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h:panelGroup id="panelguardar">
+                        <table>
+                            <tr colspan="5">
+                                <td>Observaciones: </td>
+                                <td colspan="5" width="500"><h:inputText id="observacion"   style="width: 600px"/>
+                                </td>
+                                <td colspan="5" width="500">
+                                    <p:commandButton id="co" value="Guardar" disabled="#{formatoEvaluacionController.visibilidad}" onclick="this.disabled = true;" actionListener="#{formatoEvaluacionController.evaluar()}" update="growl panelguardar"/>
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </h:panelGroup>
+                </h:form>
+            </h:panelGroup>
+
+
+
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

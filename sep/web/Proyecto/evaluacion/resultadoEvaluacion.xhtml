@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+     
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Resultado Evaluacion"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+        </ui:define>
+
+        <ui:define name="Cuerpo"  >
+
+
+            <h:panelGroup id="pgformulario" >
+
+                <br />                
+
+            </h:panelGroup>
+
+            <h:panelGroup id="pglista" style="alignment-adjust: center;">
+                <h:outputText value="${formatoEvaluacionController.setearEmpleado()}"/>
+                <h:form id="fmlista" prependId="false" style="alignment-adjust: center;" >
+                   
+                    <div id="tlazy2" class="ui-datatable ui-widget" align="center">
+
+                        <table style="border-spacing: 0px; " border="0.5" width="100%" >
+                            <tr class="ui-widget-header" >
+
+                                <th colspan="10" style="font-size: 14px;">Resultado Evaluacion de Rendimiento</th>
+                            </tr>
+                            <tbody class="ui-datatable-data">
+                                <tr >
+                                    <td >
+                                        <h:outputText id="triger"  value="Apellidos: " /><h:outputText value="#{formatoEvaluacionController.emp.apellidos}"/>
+
+                                    </td>
+                                    <td>
+                                        <h:outputText value="Nombres: "/><h:outputText value="#{formatoEvaluacionController.emp.nombres}"/>
+
+                                    </td>
+                                    <td>
+                                        <h:outputText value="Codigo: "/><h:outputText value="#{formatoEvaluacionController.emp.codigo}"/>
+
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td>
+                                        <h:outputText value="Cargo Actual: "/><h:outputText value="#{formatoEvaluacionController.emp.idCargo.nombre}"/>
+
+                                    </td>
+                                    <td>
+                                        <h:outputText value="Fecha de Ingreso: "/><h:outputText value="#{formatoEvaluacionController.emp.fechaIngreso.day}-#{formatoEvaluacionController.emp.fechaIngreso.month}-#{formatoEvaluacionController.emp.fechaIngreso.year}"/>
+
+                                    </td>
+
+                                </tr>
+                                <tr >
+                                    <td>
+                                        <h:outputText value="Gerencia/Sucursal: "/><h:outputText value="#{formatoEvaluacionController.emp.idDependencia.descripcion}"/>
+
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p:separator id="separador"/>
+
+                    <br/> 
+                    <div id="tlazy" class="ui-datatable ui-widget" align="center" style="width: 100%;">
+                        <table style="border-spacing: 0px; width: 100%; border-right: 1px solid; border-left: 1px solid; border-left-width: 1px; border-left-color: #EAEAEA; border-bottom:1px solid; " border="0.5" >
+
+                            <tr class="ui-widget-header" >
+
+                                <th colspan="15" style="font-size: 12px;">Factores Evaluados</th>
+                            </tr>
+                            <tbody class="ui-datatable-data">
+
+                                <c:forEach  var="o" items="#{formatoEvaluacionController.resultadospm}" >
+
+                                    <tr class="ui-state-default" >
+                                        <td colspan="15" >
+
+                                            #{formatoEvaluacionController.factores.get(o[0]).nombre}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td >
+
+                                            <div > #{formatoEvaluacionController.planteamiento_seleccionado.get(o[0]).planteamiento} </div>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr >
+                                        <td style="border-bottom: #90b4bd outset thin"><br/>
+                                        </td>
+
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div align="center">
+                        <table align="center">
+                            <tr colspan="3" align="center">
+                                <td> </td>
+                                <td colspan="3" width="500">
+                                    <p:commandButton  value="Continuar" actionListener="#{formatoEvaluacionController.continuar}" update="growl"/>
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+                </h:form>
+            </h:panelGroup>
+
+
+
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

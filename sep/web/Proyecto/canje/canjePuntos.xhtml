@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Puntajes"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj" showDetail="true" globalOnly="true"  />
+            </f:view>
+            <div style="min-height: 200px; margin-left: -10; background-image: url('./../../resources/pangea/fondos/esquina1.png'); background-repeat: no-repeat; background-position-x: -10px; background-position: top left;" >
+                <div style="min-height: 300px; min-width: 978px; margin-left: -10; background-image: url('./../../resources/pangea/fondos/esquina2.png'); background-repeat: no-repeat;  background-position: top right;" >
+                    <div style="min-height: 500px; min-width: 978px; margin-left: -10;  background-image: url('./../../resources/pangea/fondos/centro2.png'); background-repeat: no-repeat;  background-position:  left;" >
+                        <h:outputText value="#{puntajeBean.ConsultarPuntaje()}" />  
+                        .
+                        <h:form prependId="false">
+
+                            <div class="a_tabla" style="width: 80%; margin-left: 10%;margin-top: 5%;">
+
+
+
+                                <h3 style="text-align: center;"> Ud. ha sido seleccionado para canjear los puntos que ha logrado acumular en las Evaluaciones del
+                                    Plan Del Buen Vivir, en este apartado podra analizar la conversion de sus puntos a Bs. de acuerdo a la tasa
+                                    establecida y de esa manera introducir la cantidad de puntos que desee. </h3>
+
+
+                                <p:panel id="pnmaestro" header="Canjes Realizados" toggleable="true" closable="false"
+                                         toggleSpeed="500" collapsed="false"  >
+
+                                    <br/>
+
+                                    <p:dataTable id="tablal" var="item" value="#{puntajeBean.canjes}" paginator="true" rows="20"
+                                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                                 rowIndexVar="i" emptyMessage="No hay resultados" >
+
+
+                                        <p:column  style="text-align:center; width: 10px; max-width: 10px; #{puntajeBean.estilo(item.idComercio)} "  styleClass="campo60"  headerText="Nro"
+                                                   footerText="Nro" >
+
+                                            <h:outputText value="#{i+1}" />
+
+                                        </p:column>
+                                        <p:column  style=" width: 40px; max-width: 40px; #{puntajeBean.estilo(item.idComercio)} " styleClass="campo60"  headerText="Monto"
+                                                   footerText="Monto" >
+
+                                            <h:outputText value="#{item.puntos}" />
+
+                                        </p:column>
+                                        <p:column  style="text-align:center; width: 10px; max-width: 10px; #{puntajeBean.estilo(item.idComercio)} " headerText="Comprobante"   footerText="Comprobante">
+                                            <p:commandLink rendered="#{item.idComercio eq '0'}" action="#{puntajeBean.prepareComprobante()}">
+                                                <f:setPropertyActionListener value="#{item}"  target="#{puntajeBean.currentcanje}" />
+                                                <h:graphicImage  alt="canje" title="canje"  value="/faces/resources/images/iconos/Obser2.gif"/>
+                                            </p:commandLink>
+                                        </p:column>
+
+                                    </p:dataTable> 
+
+                                </p:panel>
+                            </div>
+                            <br/>
+
+                            <p:dataTable id="mitabla" rendered="false">
+
+                                <p:column id="modelHeader">  
+                                    <f:facet name="header">  
+                                        Puntos Disponibles  
+                                    </f:facet>  
+                                    <h:outputText value="#{puntajeBean.ConsultarPuntaje()}" />  
+                                </p:column>    
+                                <p:column id="model">  
+                                    <f:facet name="header">  
+                                        Puntos Canjeados  
+                                    </f:facet>  
+                                    <h:outputText value="0" />  
+                                </p:column>   
+
+                            </p:dataTable>
+                            <div class="ui-datatable ui-widget">
+
+
+
+
+                                <div class="a_tabla" style="width: 50%; margin-left: 30%;margin-top: 5%;">
+                                    <h:panelGroup id="puntajes">
+                                        <table border="1">
+                                            <thead class="ui-state-default">
+                                                <tr class="ui-widget-default">
+                                                    <th align="center">
+                                                        <h:outputText value="Puntos" /> 
+                                                    </th>
+                                                    <th align="center">  <h:outputText value="Puntos Canjeados" />  
+                                                    </th>
+                                                    <th align="center">    
+                                                        <h:outputText value="Saldo" />  </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="ui-widget-content" align="center">
+                                                    <td> 
+                                                        <h:outputText value="#{puntajeBean.seleccionado.puntosAcumulados}" />  
+                                                    </td>
+                                                    <td>
+                                                        <h:outputText value="#{puntajeBean.saldoc}" />  
+                                                    </td>
+                                                    <td align="right">
+                                                        <h:outputText value="#{puntajeBean.seleccionado.puntosDisponibles}" />
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table> 
+                                    </h:panelGroup>
+                                    <br/><br/>
+                                    <h3> La tasa de Cambio se establecio en #{puntajeBean.seleccionado.idCorte.tasaCambio} Bs. por punto </h3>
+
+                                    <p:separator style="height: 10px;"/>
+                                    <h:panelGrid columns="2">
+                                        <h:panelGroup>
+
+                                            <div class="col_titulo" style="width: 50px; min-width: 50px" >
+
+                                                <h:outputLabel value="Calculardora Puntos" for="saldoi" />
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <h:panelGrid columns="2">
+
+                                                <p:keyboard keypadOnly="true"  readonly="true"   value="#{puntajeBean.cantidad}" style="padding: 3px; width: 100px;"  layout="custom"  
+                                                            id="saldoi"  layoutTemplate="123-close,456-clear,789-back,0." title="Puntos a Repartir"/> 
+
+                                                <p:commandButton value="Calcular" actionListener="#{puntajeBean.calcularTasa()}" update="total"/>
+
+                                            </h:panelGrid>
+                                        </h:panelGroup>
+                                        <h:panelGroup id="total">
+
+                                            <h:panelGroup >
+                                                <h3>
+                                                    <h:outputText value="Total: #{puntajeBean.calculo} Bs." />
+                                                </h3>
+
+                                            </h:panelGroup>
+
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <div>
+                                            </div>
+                                        </h:panelGroup>
+
+
+
+
+                                    </h:panelGrid>
+                                    <p:separator style="height: 10px;"/>
+                                    <h:panelGroup>
+                                        <br/>
+                                        <h3> Introduzca la cantidad de "PUNTOS" que desea Canjear </h3>
+
+
+                                    </h:panelGroup>
+                                    <p:separator style="height: 10px;"/>
+
+                                    <h:panelGrid columns="2">
+                                        <h:panelGroup>
+
+                                            <div class="col_titulo" style="width: 120px; min-width: 120px" >
+
+                                                <h:outputLabel value="Cantidad de Puntos" for="saldoi" />
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <h:panelGrid columns="2">
+
+                                                <p:keyboard keypadOnly="true"  readonly="true"   value="#{puntajeBean.puntosCanje}" style="padding: 3px; width: 100px;"  layout="custom"  
+                                                            id="saldox"  layoutTemplate="123-close,456-clear,789-back,0." title="Puntos a Repartir"/> 
+
+                                                <p:commandButton value="Canjear" onclick="confirmacion.show()" />
+
+                                            </h:panelGrid>
+                                        </h:panelGroup>
+
+                                        <h:panelGroup>
+                                            <div>
+                                            </div>
+                                        </h:panelGroup>
+
+
+
+
+                                    </h:panelGrid>
+
+
+                                </div></div>
+                            <h:panelGroup id="elmD">
+                                <p:dialog id="cdconfirmacion" modal="true" header="Confirmar" widgetVar="confirmacion" >
+                                    <h:outputText value="Esta seguro de canjear los puntos?"></h:outputText>
+                                    <br/>
+                                    <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                                        <p:commandButton value="#{bundleP.SiTitle}"  update="growlmsj pgsublista" ajax="false"  oncomplete="confirmacion.hide()" actionListener="#{puntajeBean.canjearPuntos()}"  >
+
+                                        </p:commandButton>
+                                        <p:commandButton value="#{bundleP.NoTitle}" onclick="confirmacion.hide()" type="button" />
+                                    </h:panelGrid>
+                                </p:dialog>
+                            </h:panelGroup>
+
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>  
+
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

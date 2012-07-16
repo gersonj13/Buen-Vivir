@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Puntajes"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+            <div style="min-height: 200px; margin-left: -10; background-image: url('./../../resources/pangea/fondos/esquina1.png'); background-repeat: no-repeat; background-position-x: -10px; background-position: top left;" >
+                <div style="min-height: 300px; min-width: 978px; margin-left: -10; background-image: url('./../../resources/pangea/fondos/esquina2.png'); background-repeat: no-repeat;  background-position: top right;" >
+                    <div style="min-height: 500px; min-width: 978px; margin-left: -10;  background-image: url('./../../resources/pangea/fondos/centro2.png'); background-repeat: no-repeat;  background-position:  left;" >
+                        <h:outputText value="#{puntajeBean.ConsultarPuntaje()}" />  
+                        .
+                        <h:form>
+                            <p:dataTable id="mitabla" rendered="false">
+
+                                <p:column id="modelHeader">  
+                                    <f:facet name="header">  
+                                        Puntos Disponibles  
+                                    </f:facet>  
+                                    <h:outputText value="#{puntajeBean.ConsultarPuntaje()}" />  
+                                </p:column>    
+                                <p:column id="model">  
+                                    <f:facet name="header">  
+                                        Puntos Canjeados  
+                                    </f:facet>  
+                                    <h:outputText value="0" />  
+                                </p:column>   
+
+                            </p:dataTable>
+                            <div class="ui-datatable ui-widget">
+                                <div class="a_tabla" style="width: 50%; margin-left: 30%;margin-top: 20%;">
+
+                                    <table border="1">
+                                        <thead class="ui-state-default">
+                                            <tr class="ui-widget-default">
+                                                <th align="center">
+                                                    <h:outputText value="Puntos" /> 
+                                                </th>
+                                                <th align="center">  <h:outputText value="Puntos Canjeados" />  
+                                                </th>
+                                                <th align="center">    
+                                                    <h:outputText value="Saldo" />  </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="ui-widget-content" align="center">
+                                                <td> 
+                                                    <h:outputText value="#{puntajeBean.puntaje}" />  
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{puntajeBean.deducciones}" />  
+                                                </td>
+                                                <td align="right">
+                                                    <h:outputText value="#{puntajeBean.saldo}" />
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>  
+                                </div></div>
+
+
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>  
+
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

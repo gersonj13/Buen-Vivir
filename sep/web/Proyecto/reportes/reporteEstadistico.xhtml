@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/resources/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Reporte Evaluaciones"></h:outputText>
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <c:if test="#{true}">
+                <script type="text/javascript">
+                    //<![CDATA[
+                  
+               
+                    //]]>
+                </script>
+            </c:if>
+        </ui:define>
+
+        <ui:define name="contenido_menu">
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+            <h2>&nbsp;</h2>
+            <h1><h:outputText value="Reporte Estadistico"></h:outputText></h1>
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+
+            <f:view contentType="text/html">
+                <p:growl id="growlmsj"  showDetail="true" globalOnly="true"  />
+
+            </f:view>
+
+            <h:panelGroup id="pgformulario" >
+                <h:outputText value="${reporteEstadistico.iniciar()}"/>
+                <br/><br/>
+                <h:form id="formageneral" prependId="false">
+                    <p:remoteCommand id="updateGrowl" name="updateGrowl" update="growlmsj" />
+
+                    <p:panel id="pnmaestro" header="Parametros Reporte" toggleable="true" closable="false"
+                             toggleSpeed="500" collapsed="true"  >
+
+                        <p:wizard widgetVar="wizard" flowListener="#{reporteEstadistico.onFlowProcess}" showNavBar="true" backLabel="" nextLabel=""   >
+                            <p:separator/>
+                            <p:tab  id="Evaluaciones" title="Evaluaciones" >
+                                <p:separator/>
+                                <table border="0">
+                                    <tr >
+                                        <td width="300">
+                                            <h:panelGrid columns="1">
+                                                <h:panelGroup id="eval" style="min-width: 200px; max-width: 200px; border-style: none;"  >
+                                                    <h:selectManyCheckbox   layout="pageDirection" border="1" style="border-style: none;"  id="listaev"  value="#{reporteEstadistico.evaluacionSeleccionada}" >
+
+                                                        <f:selectItems    value="#{reporteEstadistico.evaluaciones}" itemValue="#{a.nombreEvaluacion}" var="a" itemLabel="#{a.nombreEvaluacion}" />
+
+                                                    </h:selectManyCheckbox>
+                                                </h:panelGroup>  
+                                                <h:panelGrid columns="2">  
+                                                    <p:commandButton actionListener="#{reporteEstadistico.seleccionartodase}" value="Todas" update="eval"/>  
+                                                    <p:commandButton actionListener="#{reporteEstadistico.desseleccionatodase}" value="Ninguna" update="eval"/>  
+                                                </h:panelGrid>
+                                            </h:panelGrid>
+                                        </td> 
+                                        <td>
+                                            <h:panelGrid columns="2" width="300" style=" width: 200px; min-width: 200px; max-width: 200px; alignment-adjust: center; text-align: center;"> 
+                                                <p:calendar id="fi" value="#{reporteEstadistico.fechaiEvaluacion}" navigator="true" effect="drop" readOnlyInputText="true" pattern="dd-MM-yyy"   />
+                                                <p:calendar id="ff" value="#{reporteEstadistico.fechafEvaluacion}" navigator="true" effect="drop" readOnlyInputText="true" pattern="dd-MM-yyy"   />
+
+                                                <p:commandButton value="Filtrar" update="eval"  action="#{reporteEstadistico.filtrarEvaluaciones()}" />
+                                                <p:commandButton value="Reestablecer" update="eval" actionListener="#{reporteEstadistico.resetFiltro()}" />
+                                            </h:panelGrid>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                <p:separator/>
+                                <h:panelGrid columns="2" width="100%" style="text-align: center;">
+                                    <p:commandButton value="Anterior"  disabled="true" style="text-align: right;" onstart="wizard.next()" update="growlmsj" />
+                                    <p:commandButton value="Siguiente" style="text-align: right;" onstart="wizard.next()" update="growlmsj" action="#{reporteEstadistico.muestraMensajeS()}"/>
+
+                                </h:panelGrid>
+                                <p:separator/>
+                            </p:tab>
+                            <p:tab id="Organizacion" title="Organizacion" >
+
+                                <p:separator/>
+                                <table border="0">
+                                    <tr >
+                                        <td width="200">
+                                            <h:panelGroup id="eval1" style="min-width: 200px; max-width: 200px; border-style: none;"  >
+                                                <h:panelGrid columns="1" style="text-align: center;">
+
+                                                    <h:selectOneListbox  style="border-style: none; width: 150px;"  id="listade"   valueChangeListener="#{reporteEstadistico.recargarDependencias}" value="#{reporteEstadistico.tipoDependencia}" >
+                                                        <f:selectItem itemLabel="Organizacion" itemValue="1" />
+                                                        <f:selectItem itemLabel="Gerencias" itemValue="2"/>
+                                                        <f:selectItem itemLabel="Departamentos" itemValue="3"/>
+                                                        <p:ajax event="change" update="dep"/>
+                                                    </h:selectOneListbox>
+                                                    <h:panelGrid columns="1" style="alignment-adjust: center; text-align: center;">  
+                                                        <h:panelGrid columns="2">  
+                                                            <p:commandButton actionListener="#{reporteEstadistico.seleccionartodasd}" value="Todas" update="dep"/>  
+                                                            <p:commandButton actionListener="#{reporteEstadistico.desseleccionatodasd}" value="Ninguna" update="dep"/>  
+                                                        </h:panelGrid>
+                                                        <p:commandButton value="Generar Grafica" id="gg" update="pglista" process="@form" actionListener="#{reporteEstadistico.GenerarGraficaOrganizacion()}"/>
+                                                    </h:panelGrid>
+                                                </h:panelGrid>
+                                            </h:panelGroup>   
+                                        </td> 
+                                        <td>
+                                            <h:panelGroup id="dep" style="min-width: 200px; max-width: 200px; border-style: none;"  >
+                                                <p:panel id="panelorg" style="width: 400px;" header="Unidades Organizativas" toggleable="true" closable="false"
+                                                         toggleSpeed="500" collapsed="true"  >
+
+                                                    <h:selectManyCheckbox   layout="pageDirection" border="1" style="border-style: none;"  id="listad"  value="#{reporteEstadistico.dependenciasSeleccionada}" >
+
+                                                        <f:selectItems    value="#{reporteEstadistico.dependencias}" itemValue="#{a.descripcion}" var="a" itemLabel="#{a.nombre}" />
+
+                                                    </h:selectManyCheckbox> </p:panel>
+                                            </h:panelGroup>   
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+
+                                <p:separator/>
+                                <h:panelGrid columns="2" width="100%" style="text-align: center;">
+                                    <p:commandButton value="Anterior" style="text-align: right;" onstart="wizard.back()" update="growlmsj" />
+                                    <p:commandButton value="Siguiente"  style="text-align: right;" onstart="wizard.next()" update="growlmsj emp" actionListener="#{reporteEstadistico.muestraMensajeS()}"/>
+
+                                </h:panelGrid>
+                                <p:separator/>
+                            </p:tab>
+                            <p:tab id="Empleado"  title="Empleado" >
+
+                                <p:separator/>
+
+                                <h:panelGroup id="emp" style="min-width: 200px; max-width: 200px; border-style: none;"  >
+                                    <h:panelGrid columns="2" >
+                                        <p:panel id="panelempleado" style="width: 600px;" header="Empleados Recopilados" toggleable="true" closable="false"
+                                                 toggleSpeed="500" collapsed="true"  >
+
+                                            <h:panelGroup id="empleado" >
+
+                                                <h:selectManyCheckbox   layout="pageDirection" border="1" style="border-style: none;"  id="listae"  value="#{reporteEstadistico.empleadoSeleccionado}" >
+
+                                                    <f:selectItems    value="#{reporteEstadistico.empleados}" itemValue="#{a.id}" var="a" itemLabel="#{a.nombres} #{a.apellidos}" />
+
+                                                </h:selectManyCheckbox> 
+                                            </h:panelGroup>
+                                        </p:panel>
+                                        <h:panelGrid columns="1" style="alignment-adjust: center; text-align: center;">  
+                                            <h:panelGrid columns="2">  
+                                                <p:commandButton actionListener="#{reporteEstadistico.seleccionartodose}" value="Todos" update="empleado"/>  
+                                                <p:commandButton actionListener="#{reporteEstadistico.desseleccionartodose}" value="Ninguno" update="empleado"/>  
+                                            </h:panelGrid>
+                                            <p:commandButton value="Generar Grafica Empleados" id="gge" update="pglista" process="@form" actionListener="#{reporteEstadistico.GenerarGraficaEmpleados()}"/>
+                                        </h:panelGrid>
+
+                                    </h:panelGrid>
+
+
+                                </h:panelGroup>   
+
+                                <p:separator/>
+                                <h:panelGrid columns="2" width="100%" style="text-align: center;">
+                                    <p:commandButton value="Anterior" style="text-align: right;" onstart="wizard.back()" update="growlmsj eval1 dep panelorg listad" />
+                                    <p:commandButton value="Siguiente" disabled="true" style="text-align: right;" onstart="wizard.next()" update="growlmsj" actionListener="#{reporteEstadistico.muestraMensajeS()}"/>
+
+                                </h:panelGrid>
+                                <p:separator/>
+
+                            </p:tab>
+
+                        </p:wizard>
+                    </p:panel>
+
+                </h:form>
+
+
+            </h:panelGroup>
+            <br/><br/>
+            <script type="text/javascript">
+              
+                
+                jQuery.noConflict();
+                $ = jQuery;
+                $(document).ready(function(){
+                    $('[id$="_next"]').release(function()
+                    {
+                        alert('si sirve');
+                    });
+                });
+                         
+              
+            </script>
+            <h:panelGroup id="pglista">
+                <h:form id="fmlista" prependId="false">
+
+                    <h:panelGroup id="pgsublista">
+
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            
+                            jQuery.noConflict();
+                            $ = jQuery;
+                            $(document).ready(function(){
+                                $("#gg").click(function() {
+                            
+                                    $("#pnmaestro").css("display", "none");
+                            
+                                });
+                            });   
+                            $(document).ready(function(){
+                                $("#gge").click(function() {
+                            
+                                    $("#pnmaestro").css("display", "none");
+                            
+                                });
+                            });  
+                            $("#pglista").ready(function() {
+                                $("#pnmaestro").css("display", "block");
+                            });
+                            
+                            Highcharts.theme = {
+                                colors: ['#058DC7', '#50B432', '#DF460B', '#DCCF00', '#24CBE5', '#C4E572', '#DF9655', '#FFF263', '#CAEFC4'],
+                                chart: {
+                                    backgroundColor: {
+                                        linearGradient: [0, 0, 200, 200],
+                                        stops: [
+                                            [0, 'rgb(255, 255, 255)'],
+                                            [1, 'rgb(240, 240, 255)']
+                                        ]
+                                    },
+                                    borderWidth: 2,
+                                    plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+                                    plotShadow: true,
+                                    plotBorderWidth: 1
+                                },
+                                title: {
+                                    style: {
+                                        color: '#000',
+                                        font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+                                    }
+                                },
+                                subtitle: {
+                                    style: {
+                                        color: '#666666',
+                                        font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
+                                    }
+                                },
+                                xAxis: {
+                                    gridLineWidth: 1,
+                                    lineColor: '#000',
+                                    tickColor: '#000',
+                                    labels: {
+                                        
+                                        style: {
+                                            color: '#000',
+                                            font: '9px Trebuchet MS, Verdana, sans-serif'
+                                        }
+                                    },
+                                    title: {
+                                        style: {
+                                            color: '#333',
+                                            fontWeight: 'bold',
+                                            fontSize: '10px',
+                                            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    minorTickInterval: 'auto',
+                                    lineColor: '#000',
+                                    lineWidth: 1,
+                                    tickWidth: 1,
+                                    tickColor: '#000',
+                                    labels: {
+                                        style: {
+                                            color: '#000',
+                                            font: '11px Trebuchet MS, Verdana, sans-serif'
+                                        }
+                                    },
+                                    title: {
+                                        style: {
+                                            color: '#333',
+                                            fontWeight: 'bold',
+                                            fontSize: '12px',
+                                            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                legend: {
+                                    itemStyle: {
+                                        font: '9pt Trebuchet MS, Verdana, sans-serif',
+                                        color: 'black'
+
+                                    },
+                                    itemHoverStyle: {
+                                        color: '#039'
+                                    },
+                                    itemHiddenStyle: {
+                                        color: 'gray'
+                                    }
+                                },
+                                labels: {
+                                    style: {
+                                        color: '#99b'
+                                    }
+                                }
+                            };
+
+                            // Apply the theme
+                            var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+                            var chart;
+                            $("#pglista").ready(function() {
+                                chart = new Highcharts.Chart({
+                                    chart: {
+                                        renderTo: 'container',
+                                        type: 'bar',
+                                        height: 600,
+                                        width: 850,
+                                        marginRight:200,
+                                        zoomType: 'xy'
+                                    },
+                                    title: {
+                                        text: 'Acumulado de Puntos'
+                                    },
+                                    subtitle: {
+                                        text: 'Evaluacion del Buen Vivir'
+                                    },
+                                    xAxis: {
+                                        categories:  [#{reporteEstadistico.categorias}],
+                                        title: {
+                                            text: 'Gerencias/Sucursales/Departamentos/Empleados'
+                                        },                                        
+                                        labels: {
+                                            rotation: 0,
+                                            align: 'right',
+                                            style: {
+                                                font: 'normal 7px Verdana, sans-serif'
+                                            }
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Cantidad Puntos',
+                                            align: 'high'
+                                        },
+                                        
+                                        labels: {
+                                            rotation: -45,
+                                            align: 'right',
+                                            style: {
+                                                font: 'normal 13px Verdana, sans-serif'
+                                            }
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter: function() {
+                                            return ''+
+                                                this.series.name +': '+ this.y +' Puntos';
+                                        }
+                                    },
+                                    plotOptions: {
+                                        bar: {
+                                            dataLabels: {
+                                                enabled: true
+                                            }
+                                        }
+                                    },
+                                    legend: {
+                                        enabled: false
+                                    },
+                                    credits: {
+                                        enabled: false
+                                    },
+                                    series: #{reporteEstadistico.series}
+                                }, function(chart) {
+                                    var options = chart.options.legend;
+                                    /**
+                                     * What happens when the user clicks the legend item
+                                     */
+                                    function clickItem(series, $legendItem, $line) {
+                                        series.setVisible();
+                                        $legendItem.css(
+                                        options[series.visible ? 'itemStyle' : 'itemHiddenStyle']
+                                    );
+                                        $line.css({
+                                            borderTop: '2px solid '+ (series.visible ? series.color : 
+                                                options.itemHiddenStyle.color)
+                                        });
+                                    }
+                                    // Create the legend box
+                                    var $legend = $('<div>')
+                                    .css({
+                                        width: 210,
+                                        maxHeight: 100,
+                                        padding: 10,
+                                        position: 'absolute',
+                                        overflow: 'auto',
+                                        right: -5,
+                                        bottom: 70,
+                                        borderColor: options.borderColor,
+                                        borderWidth: options.borderWidth,
+                                        borderStyle: 'solid',
+                                        borderRadius: options.borderRadius
+                                    })
+                                    .appendTo(chart.container);
+        
+
+                                    $.each(chart.series, function(i, series) {
+                                        // crete the legend item            
+                                        var $legendItem = $('<div>')
+                                        .css({
+                                            position: 'relative',
+                                            marginLeft: 20
+                                        })
+                                        .css(options[series.visible ? 'itemStyle' : 'itemHiddenStyle'])
+                                        .html(series.name)
+                                        .appendTo($legend);
+            
+                                        // create the line with each series color
+                                        var $line = $('<div>')
+                                        .css({
+                                            width: 16,
+                                            position: 'absolute',
+                                            left: -20,
+                                            top: 8,
+                                            borderTop: '2px solid '+ (series.visible ? series.color : 
+                                                options.itemHiddenStyle.color)
+                                        })
+                                        .appendTo($legendItem);
+            
+                                        // click handler 
+                                        $legendItem.click(function() {
+                                            clickItem(series, $legendItem, $line);
+                                        });
+                
+                                    });
+                                    
+                                });
+                            });
+                            $("#pglista").ready(function() {
+                                chart = new Highcharts.Chart({
+                                    chart: {
+                                        renderTo: 'container3',
+                                        type: 'bar',
+                                        height: 600,
+                                        width: 850,
+                                        marginRight:200,
+                                        zoomType: 'xy'
+                                    },
+                                    title: {
+                                        text: '#{reporteEstadistico.panel2}'
+                                    },
+                                    subtitle: {
+                                        text: 'Evaluacion del Buen Vivir'
+                                    },
+                                    xAxis: {
+                                        categories:  [#{reporteEstadistico.categoriasPorcentaje}],
+                                        title: {
+                                            text: 'Gerencias/Sucursales/Departamentos/Empleados'
+                                        },                                        
+                                        labels: {
+                                            rotation: 0,
+                                            align: 'right',
+                                            style: {
+                                                font: 'normal 7px Verdana, sans-serif'
+                                            }
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: '#{reporteEstadistico.panel2}',
+                                            align: 'high'
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter: function() {
+                                            return ''+
+                                                this.series.name +': '+ this.y +' %';
+                                        }
+                                    },
+                                    plotOptions: {
+                                        bar: {
+                                            dataLabels: {
+                                                enabled: true
+                                            }
+                                        }
+                                    },
+                                    legend: {
+                                        enabled: false
+                                    },
+                                    credits: {
+                                        enabled: false
+                                    },
+                                    series: #{reporteEstadistico.seriesPorcentaje}
+                                }, function(chart) {
+                                    var options = chart.options.legend;
+                                    /**
+                                     * What happens when the user clicks the legend item
+                                     */
+                                    function clickItem(series, $legendItem, $line) {
+                                        series.setVisible();
+                                        $legendItem.css(
+                                        options[series.visible ? 'itemStyle' : 'itemHiddenStyle']
+                                    );
+                                        $line.css({
+                                            borderTop: '2px solid '+ (series.visible ? series.color : 
+                                                options.itemHiddenStyle.color)
+                                        });
+                                    }
+                                    // Create the legend box
+                                    var $legend = $('<div>')
+                                    .css({
+                                        width: 210,
+                                        maxHeight: 100,
+                                        padding: 10,
+                                        position: 'absolute',
+                                        overflow: 'auto',
+                                        right: 0,
+                                        bottom: 70,
+                                        borderColor: options.borderColor,
+                                        borderWidth: options.borderWidth,
+                                        borderStyle: 'solid',
+                                        borderRadius: options.borderRadius
+                                    })
+                                    .appendTo(chart.container);
+        
+
+                                    $.each(chart.series, function(i, series) {
+                                        // crete the legend item            
+                                        var $legendItem = $('<div>')
+                                        .css({
+                                            position: 'relative',
+                                            marginLeft: 20
+                                        })
+                                        .css(options[series.visible ? 'itemStyle' : 'itemHiddenStyle'])
+                                        .html(series.name)
+                                        .appendTo($legend);
+            
+                                        // create the line with each series color
+                                        var $line = $('<div>')
+                                        .css({
+                                            width: 16,
+                                            position: 'absolute',
+                                            left: -20,
+                                            top: 8,
+                                            borderTop: '2px solid '+ (series.visible ? series.color : 
+                                                options.itemHiddenStyle.color)
+                                        })
+                                        .appendTo($legendItem);
+            
+                                        // click handler 
+                                        $legendItem.click(function() {
+                                            clickItem(series, $legendItem, $line);
+                                        });
+                
+                                    });
+                                    
+                                });
+                            });
+                            $("#pglista").ready(function() {
+                                chart = new Highcharts.Chart({
+                                    chart: {
+                                        renderTo: 'container2',
+                                        type: 'line',
+                                        height: 700,
+                                        width: 800,
+                                        marginRight:100,
+                                        marginBottom: 70,
+                                        zoomType: 'xy'
+                                        
+                                    },
+                                    title: {
+                                        text: '#{reporteEstadistico.panel1}',
+                                        x: -20 //center
+                                    },
+                                    subtitle: {
+                                        text: 'Evaluacion del Buen Vivir',
+                                        x: -20
+                                    },
+                                    xAxis: {
+                                        lineWidth: 1,
+                                        minorGridLineWidth: 1,
+                                        minorTickInterval: 'auto',
+                                        minorTickWidth: 1,
+                                        max: 6,
+                                        categories: [#{reporteEstadistico.categoriasPromedio}],
+                                        title: {
+                                            text: 'Evaluaciones'
+                                        },
+                                        labels: {
+                                            staggerLines: 2
+                                        },
+                                        tickWidth: 1 
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Promedio',
+                                            gridLineWidth: 1
+                                        },
+                                        plotLines: [{
+                                                value: 0,
+                                                width: 1,
+                                                color: '#808080'
+                                            }]
+                                    },
+                                    tooltip: {
+                                        formatter: function() {
+                                            return '<b>'+ this.series.name +'</b><br/>'+
+                                                this.x +': '+ this.y +'Puntos';
+                                        }
+                                    },
+                                    legend: {
+                                        enabled: false
+                                    },
+                                    credits: {
+                                        enabled: false
+                                    },
+                                    series: #{reporteEstadistico.seriesPromedio}
+                                }, function(chart) {
+                                    var options = chart.options.legend;
+                                    /**
+                                     * What happens when the user clicks the legend item
+                                     */
+                                    function clickItem(series, $legendItem, $line) {
+                                        series.setVisible();
+                                        $legendItem.css(
+                                        options[series.visible ? 'itemStyle' : 'itemHiddenStyle']
+                                    );
+                                        $line.css({
+                                            borderTop: '2px solid '+ (series.visible ? series.color : 
+                                                options.itemHiddenStyle.color)
+                                        });
+                                    }
+                                    // Create the legend box
+                                    var $legend = $('<div id="draggable">')
+                                    .css({
+                                        width: 210,
+                                        maxHeight: 100,
+                                        padding: 10,
+                                        position: 'absolute',
+                                        overflow: 'auto',
+                                        right: 0,
+                                        bottom: 70,
+                                        borderColor: options.borderColor,
+                                        borderWidth: options.borderWidth,
+                                        borderStyle: 'solid',
+                                        borderRadius: options.borderRadius
+                                    })
+                                    .appendTo(chart.container);
+        
+
+                                    $.each(chart.series, function(i, series) {
+                                        // crete the legend item            
+                                        var $legendItem = $('<div>')
+                                        .css({
+                                            position: 'relative',
+                                            marginLeft: 20
+                                        })
+                                        .css(options[series.visible ? 'itemStyle' : 'itemHiddenStyle'])
+                                        .html(series.name)
+                                        .appendTo($legend);
+            
+                                        // create the line with each series color
+                                        var $line = $('<div>')
+                                        .css({
+                                            width: 16,
+                                            position: 'absolute',
+                                            left: -20,
+                                            top: 8,
+                                            borderTop: '2px solid '+ (series.visible ? series.color : 
+                                                options.itemHiddenStyle.color)
+                                        })
+                                        .appendTo($legendItem);
+            
+                                        // click handler 
+                                        $legendItem.click(function() {
+                                            clickItem(series, $legendItem, $line);
+                                        });
+                
+                                    });
+                                    
+                                });
+                            });
+                            
+                      
+                            //]]>
+                        </script>
+                        <p:panel id="panelsuma" header="Grafica Sumatoria" toggleable="true" closable="false"
+                                 toggleSpeed="500" collapsed="true"  >
+
+                            <div id="container" style="height: 600px; min-width: 850px; margin: 0 auto; overflow: auto;" ></div>
+
+
+
+                        </p:panel>
+                        <p:panel id="panelprom" header="#{reporteEstadistico.panel1}" toggleable="true" closable="false"
+                                 toggleSpeed="500" collapsed="true"  >
+
+                            <div  id="container2"  style="height: 700px; margin: 0 auto; overflow: auto;" ></div>
+
+
+
+                        </p:panel>
+                        <p:panel id="panelcantidad" header="#{reporteEstadistico.panel2}" toggleable="true" closable="false"
+                                 toggleSpeed="500" collapsed="true"  >
+
+                            <div  id="container3"  style="height: 600px; min-width: 850px; margin: 0 auto; overflow: auto;" ></div>
+
+
+
+                        </p:panel>
+
+                    </h:panelGroup>
+
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="titulo_salida">
+
+        </ui:define>
+    </ui:composition>
+
+</html>

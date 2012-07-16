@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/resources/plantillas/plantillaInicio.xhtml">
+
+        <ui:define name="title">
+            ${bundleP.PangeaNameTitle} - ${bundleP.LoginTitle}
+        </ui:define>
+
+        <ui:define name="importaciones">
+            <h:outputStylesheet name="pangea/flick/skin.css" />
+           
+        </ui:define>
+
+        <ui:define name="titulo_entrada">
+        </ui:define>
+
+        <ui:define name="Cuerpo">
+            <h:form prependId="false" style=" margin: 2px;">
+                <f:view contentType="text/html">
+                    <p:growl id="growl" showDetail="true" />
+                </f:view>
+                <br/>
+                <p:focus />
+                <table class="s_sin" style="width: 96%; margin-top: 10px;">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Usuario"  for="login"/>
+                            
+                           
+                        </td>
+                        <td>
+                            <h:inputText  label="Usuario" id="login"  value ="#{sessionBean.login}" style="width: 94%"   />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value ="Password" for="password"/>
+                        </td>
+                        <td>
+                            <h:inputSecret label="Password" id="password"  value="#{sessionBean.pass}" style="width: 94%" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p:ajaxStatus>
+                                <f:facet name="start">
+                                    <h:graphicImage value="resources/pangea/flick/images/ui-anim_basic_16x16.gif" />
+                                    <h:outputText value="Procesando" style="font-size:10px;"/>
+                                </f:facet>
+                                <f:facet name="complete">
+                                    <h:outputText value="" />
+                                </f:facet>
+                            </p:ajaxStatus>
+                        </td>
+                        <td style="text-align:right;">
+                            <p:commandButton value="Iniciar Sesión"  actionListener="#{sessionBean.iniciar}" update="growl"  />
+                        </td>
+                    </tr>
+                </table>
+
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+
+
+</html>
